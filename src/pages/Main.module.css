@@ -1,0 +1,6 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url('../assets/main.jpg') no-repeat center center / cover;
+  overflow: hidden;
+}
