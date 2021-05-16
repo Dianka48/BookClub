@@ -35,7 +35,7 @@ const QuoteContainer = () => {
           }
         }
       });
-    }, 1000);
+    }, 30000);
 
     return () => {
       clearTimeout(timer);
@@ -43,8 +43,13 @@ const QuoteContainer = () => {
   }, [fetchedQuotes, randomQuoteIndex]);
 
   return (
-    <div className={styles.quoteContainer}>
-      {fetchedQuotes && <Quote text={fetchedQuotes[randomQuoteIndex].text} />}
+    <div key={randomQuoteIndex} className={styles.quoteContainer}>
+      {fetchedQuotes && (
+        <Quote
+          text={fetchedQuotes[randomQuoteIndex].text}
+          author={fetchedQuotes[randomQuoteIndex].author}
+        />
+      )}
     </div>
   );
 };

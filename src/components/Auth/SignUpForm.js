@@ -1,16 +1,19 @@
-import { useContext, useRef } from 'react';
+import { Fragment, useContext, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 
-const SignUpForm = () => {
+import styles from './SignInUpForm.module.css';
+
+const SignUpForm = ({ onClose }) => {
   const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const userNameInputRef = useRef();
   const history = useHistory();
+  const [error, setError] = useState(null);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -77,35 +80,44 @@ const SignUpForm = () => {
         );
         history.replace('./profile');
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => setError(error.message));
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <Input
-        ref={userNameInputRef}
-        label="User Name"
-        input={{ id: 'userName', type: 'text', required: true }}
-      />
-      <Input
-        ref={emailInputRef}
-        label="Email"
-        input={{ id: 'email', type: 'email', required: true }}
-      />
-      <Input
-        ref={passwordInputRef}
-        label="Password"
-        input={{ id: 'password', type: 'password', required: true }}
-      />
-      <div>
-        <Button type="submit" onClick={() => {}}>
-          Sign Up
-        </Button>
-        <Button type="button" onClick={() => {}}>
-          Cancel
-        </Button>
-      </div>
-    </form>
+    <Fragment>
+      <h1>Sign Up</h1>
+      <form onSubmit={onSubmitHandler}>
+        <Input
+          ref={userNameInputRef}
+          label="User Name"
+          input={{ id: 'userName', type: 'text', required: true }}
+        />
+        <Input
+          ref={emailInputRef}
+          label="Email"
+          input={{ id: 'email', type: 'email', required: true }}
+        />
+        <Input
+          ref={passwordInputRef}
+          label="Password"
+          input={{
+            id: 'password',
+            type: 'password',
+            required: true,
+            minLength: 6,
+          }}
+        />
+        <div className={styles.action}>
+          <Button type="submit" onClick={() => {}} extraClass="button--primary">
+            Sign Up
+          </Button>
+          <Button type="button" onClick={onClose} extraClass="button--medium">
+            Cancel
+          </Button>
+        </div>
+        {error && <div className={styles.error}>{error}</div>}
+      </form>
+    </Fragment>
   );
 };
 

@@ -1,0 +1,31 @@
+h1 {
+  font-size: 2.5rem;
+  padding: 1rem 0.5rem;
+  font-weight: normal;
+}
+
+.action {
+  display: flex;
+  margin: 1.5rem 0;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .action {
+    margin-top: 3rem;
+  }
+
+  .error {
+    font-size: 1.2rem;
+  }
+}

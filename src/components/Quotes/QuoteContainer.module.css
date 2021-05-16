@@ -1,0 +1,28 @@
+.quoteContainer {
+  width: 100vw;
+  text-align: center;
+  padding: 0 1rem;
+  animation: appear 30000ms ease;
+  margin: 5rem 0 0 0;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .quoteContainer {
+    margin: 20rem 0 0 0;
+  }
+}

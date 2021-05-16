@@ -5,20 +5,20 @@ import styles from './Modal.module.css';
 
 const overlayElement = document.getElementById('overlay');
 
-const Overlay = (props) => {
+const Overlay = ({ onClick, children }) => {
   return (
     <Fragment>
-      <div className={styles.backdrop} onClick={props.onClick}></div>
+      <div className={styles.backdrop} onClick={onClick}></div>
       <div className={styles.modal}>
-        <div>{props.children}</div>
+        <div>{children}</div>
       </div>
     </Fragment>
   );
 };
 
-const Modal = (props) => {
+const Modal = ({ onClose, children }) => {
   return ReactDOM.createPortal(
-    <Overlay onClick={props.onClose}>{props.children}</Overlay>,
+    <Overlay onClick={onClose}>{children}</Overlay>,
     overlayElement,
   );
 };
