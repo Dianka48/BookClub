@@ -24,7 +24,7 @@ const SignUpForm = ({ onClose }) => {
 
     // Add validation
     const signUpPromise = fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAadMHoE_D2WExrw0nj5TMYiJm9OoDT134',
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB3OlWkSSvxoTDBCmsaxzzou_NRuc4JL04',
       {
         method: 'POST',
         body: JSON.stringify({

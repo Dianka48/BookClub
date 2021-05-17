@@ -30,7 +30,7 @@ const SignInForm = ({ onClose }) => {
         `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="email"&equalTo="${enteredEmail}"`,
       ),
       fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAadMHoE_D2WExrw0nj5TMYiJm9OoDT134',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB3OlWkSSvxoTDBCmsaxzzou_NRuc4JL04',
         {
           method: 'POST',
           body: JSON.stringify({
