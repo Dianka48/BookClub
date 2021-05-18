@@ -1,0 +1,11 @@
+.container {
+  padding: 5rem 5%;
+  background-color: var(--light);
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 5rem 10%;
+  }
+}
