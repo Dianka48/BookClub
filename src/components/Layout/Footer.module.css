@@ -1,0 +1,35 @@
+.footer {
+  width: 100vw;
+  display: flex;
+  height: 5rem;
+  background-color: var(--medium);
+  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 0.2rem;
+  text-align: center;
+  padding: 1rem 1rem;
+}
+
+.footer a {
+  color: var(--secondary);
+}
+
+.footer a:hover,
+.footer a:active {
+  color: var(--primary);
+  fill: var(--primary);
+}
+
+.linkedIn svg {
+  fill: #0072b1;
+  margin-left: 0.5rem;
+  transform: translateY(0.3rem);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    font-size: 1.1rem;
+  }
+}

@@ -18,18 +18,18 @@
   padding-bottom: 0.3rem;
 }
 
-h2 {
+.mainAuthContainer h2 {
   font-size: 1.7rem;
   padding-bottom: 0.2rem;
   font-weight: normal;
 }
 
-a {
+.mainAuthContainer a {
   text-decoration: none;
   color: black;
 }
 
-a:hover {
+.mainAuthContainer a:hover {
   color: var(--secondary);
 }
 
@@ -47,13 +47,13 @@ a:hover {
     bottom: 4rem;
   }
 
-  h2 {
+  .mainAuthContainer h2 {
     font-size: 2.2rem;
     padding-bottom: 0.5rem;
     font-weight: normal;
   }
 
-  a {
+  .mainAuthContainer a {
     font-size: 1.2rem;
   }
 }

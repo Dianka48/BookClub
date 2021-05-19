@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Navigation from '../components/Layout/Navigation';
 import Container from '../components/UI/Container';
+import Footer from '../components/Layout/Footer';
 
 const Books = () => {
   return (
@@ -9,6 +10,7 @@ const Books = () => {
       <Container>
         <h1>Books Page</h1>
       </Container>
+      <Footer />
     </Fragment>
   );
 };
