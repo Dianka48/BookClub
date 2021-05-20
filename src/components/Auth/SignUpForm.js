@@ -85,7 +85,7 @@ const SignUpForm = ({ onClose }) => {
 
   return (
     <Fragment>
-      <h1>Sign Up</h1>
+      <h1 className={styles.signInUpH1}>Sign Up</h1>
       <form onSubmit={onSubmitHandler}>
         <Input
           ref={userNameInputRef}

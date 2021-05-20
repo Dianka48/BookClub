@@ -25,11 +25,9 @@ const Navigation = () => {
       </div>
       <nav className={menuOpened ? styles.openedNav : styles.navigation}>
         <ul>
-          {!isLoggedIn && (
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-          )}
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
           <li>
             <NavLink
               to="/books"

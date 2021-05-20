@@ -4,3 +4,17 @@
   background: url('../assets/main.jpg') no-repeat center center / cover;
   overflow: hidden;
 }
+
+.profileButton {
+  position: absolute;
+  bottom: 2rem;
+  left: calc(50% - 7.5rem);
+  width: 15rem;
+}
+
+@media (min-width: 768px) {
+  .profileButton {
+    bottom: 7rem;
+    left: calc(80% - 7.5rem);
+  }
+}

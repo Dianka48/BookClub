@@ -6,6 +6,7 @@
   justify-content: center;
   margin-left: 2rem;
   cursor: pointer;
+  text-align: center;
 }
 
 .signInOut:hover {

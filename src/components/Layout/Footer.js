@@ -5,8 +5,14 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div>
         <p>
-          Website was created for DA-WEB Czechitas course. Book information
-          taken from <a href="https://www.goodreads.com/">Goodreads</a>
+          Website was created for DA-WEB{' '}
+          <a href="https://www.czechitas.cz/en/" target="_blank">
+            Czechitas
+          </a>{' '}
+          course. Book information taken from{' '}
+          <a href="https://www.goodreads.com/" target="_blank">
+            Goodreads
+          </a>
         </p>
       </div>
       <div className={styles.linkedIn}>
