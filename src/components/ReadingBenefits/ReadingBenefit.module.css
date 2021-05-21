@@ -1,0 +1,59 @@
+.benefits,
+.benefit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.6;
+  row-gap: 1rem;
+}
+
+.benefits h1 {
+  font-weight: normal;
+}
+
+.image {
+  width: 70%;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+  .benefits {
+    row-gap: 2rem;
+  }
+
+  .benefits h1 {
+    font-size: 2.5rem;
+  }
+
+  .benefit {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    column-gap: 2rem;
+  }
+
+  .image {
+    min-width: 20rem;
+  }
+
+  .benefit p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .benefits h1 {
+    width: 100%;
+    text-align: left;
+  }
+
+  .image {
+    width: 17rem;
+  }
+}

@@ -1,13 +1,16 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import AuthContext from '../../store/auth-context';
+import LoadingSpinner from '../UI/LoadingSpinner';
 
 import Book from './Book';
+import Categories from './Categories/Categories';
 
 const BookList = () => {
   const [fetchedBooks, setFetchedBooks] = useState(null);
   const [booksAreLoading, setBooksAreLoading] = useState(true);
   const [userIdIsLoading, setUserIdIsLoading] = useState(true);
   const [userId, setUserId] = useState(null);
+  const [filteredBooks, setFilteredBooks] = useState(null);
   const { email } = useContext(AuthContext);
 
   const isLoading = booksAreLoading || userIdIsLoading;
@@ -22,7 +25,19 @@ const BookList = () => {
         for (const key in data) {
           booksArray.push({ bookKey: key, ...data[key] });
         }
+        booksArray.sort((book1, book2) => {
+          const rating1 =
+            Number(book1.reviews) === 0
+              ? 0
+              : Number(book1.score) / Number(book1.reviews);
+          const rating2 =
+            Number(book2.reviews) === 0
+              ? 0
+              : Number(book2.score) / Number(book2.reviews);
+          return rating2 - rating1;
+        });
         setFetchedBooks(booksArray);
+        setFilteredBooks(booksArray);
         setBooksAreLoading(false);
       });
   }, []);
@@ -38,24 +53,40 @@ const BookList = () => {
         }
         setUserIdIsLoading(false);
       });
-  }, []);
+  }, [email]);
+
+  const filterCategoryHandler = (filteredCategory) => {
+    if (filteredCategory === 'all') {
+      setFilteredBooks(fetchedBooks);
+      return;
+    }
+    setFilteredBooks(
+      fetchedBooks.filter((book) => book.category === filteredCategory),
+    );
+  };
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <LoadingSpinner />}
       {!isLoading && (
-        <Book
-          bookKey={fetchedBooks[0].bookKey}
-          author={fetchedBooks[0].author}
-          category={fetchedBooks[0].category}
-          image={fetchedBooks[0].image}
-          reviews={fetchedBooks[0].reviews}
-          score={fetchedBooks[0].score}
-          text={fetchedBooks[0].text}
-          title={fetchedBooks[0].title}
-          year={fetchedBooks[0].year}
-          userId={userId}
-        />
+        <Fragment>
+          <Categories onFilterCategory={filterCategoryHandler} />
+          {filteredBooks.map((book) => (
+            <Book
+              key={book.bookKey}
+              bookKey={book.bookKey}
+              author={book.author}
+              category={book.category}
+              image={book.image}
+              reviews={book.reviews}
+              score={book.score}
+              text={book.text}
+              title={book.title}
+              year={book.year}
+              userId={userId}
+            />
+          ))}
+        </Fragment>
       )}
     </div>
   );

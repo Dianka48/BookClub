@@ -1,5 +1,5 @@
 import { Fragment, useContext, useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 import Input from '../UI/Input';
@@ -13,6 +13,7 @@ const SignInForm = ({ onClose }) => {
   const passwordInputRef = useRef();
   const history = useHistory();
   const [error, setError] = useState(null);
+  const match = useRouteMatch();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -67,7 +68,10 @@ const SignInForm = ({ onClose }) => {
           userName,
           voted,
         );
-        history.replace('./profile');
+        if (match.path === '/') {
+          history.replace('./profile');
+        }
+        onClose();
       })
       .catch((error) => setError(error.message));
   };

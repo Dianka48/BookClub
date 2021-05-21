@@ -1,6 +1,6 @@
 :root {
-  --star-size: 60px;
-  --star-color: #fff;
+  --star-size: 2rem;
+  --star-color: var(--dark);
   --star-background: #fc0;
 }
 
@@ -23,4 +23,10 @@
   );
   background-clip: text;
   color: transparent;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --star-size: 3rem;
+  }
 }

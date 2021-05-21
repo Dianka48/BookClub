@@ -1,0 +1,90 @@
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.book h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.rating {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.author {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.author span {
+  display: block;
+}
+
+.bookImage {
+  max-width: 17rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bookImage img {
+  width: 100%;
+}
+
+.linkBack {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.arrow {
+  font-size: 1.5rem;
+}
+
+.linkBack a {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+.linkBack a:hover {
+  background-color: var(--secondary);
+  color: var(--light);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.text {
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .book h1 {
+    font-size: 3rem;
+  }
+
+  .rating {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .author span {
+    display: inline-block;
+  }
+
+  .author span:first-child {
+    margin-right: 0.5rem;
+  }
+
+  .text {
+    font-size: 1.2rem;
+  }
+
+  .bookImage {
+    margin-bottom: 2rem;
+  }
+}

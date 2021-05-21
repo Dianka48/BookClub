@@ -1,0 +1,9 @@
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.1rem;
+  column-gap: 0.08rem;
+  margin: 1rem 0;
+}

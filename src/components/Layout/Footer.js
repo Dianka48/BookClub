@@ -6,12 +6,16 @@ const Footer = () => {
       <div>
         <p>
           Website was created for DA-WEB{' '}
-          <a href="https://www.czechitas.cz/en/" target="_blank">
+          <a
+            href="https://www.czechitas.cz/en/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Czechitas
           </a>{' '}
-          course. Book information taken from{' '}
-          <a href="https://www.goodreads.com/" target="_blank">
-            Goodreads
+          course. Book information and images taken from{' '}
+          <a href="https://www.goodreads.com/" target="_blank" rel="noreferrer">
+            Goodreads.
           </a>
         </p>
       </div>
@@ -21,6 +25,7 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://www.linkedin.com/in/diana-nem%C4%8Dekov%C3%A1-11113896/"
+            rel="noreferrer"
           >
             Diana Nemčeková
             <svg

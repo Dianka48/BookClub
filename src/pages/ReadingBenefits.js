@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
-import Navigation from '../components/Layout/Navigation';
 import Container from '../components/UI/Container';
+import Navigation from '../components/Layout/Navigation';
 import Footer from '../components/Layout/Footer';
-import BookList from '../components/Books/BookList';
+import ReadingBenefit from '../components/ReadingBenefits/ReadingBenefit';
 
-const Books = () => {
+const ReadingBenefits = () => {
   return (
     <Fragment>
       <Navigation />
       <Container>
-        <BookList />
+        <ReadingBenefit />
       </Container>
       <Footer />
     </Fragment>
   );
 };
 
-export default Books;
+export default ReadingBenefits;

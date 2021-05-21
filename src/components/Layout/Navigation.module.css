@@ -125,3 +125,9 @@ li a.active {
     display: none;
   }
 }
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 0 20%;
+  }
+}

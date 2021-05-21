@@ -1,0 +1,44 @@
+.category {
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  max-width: 6rem;
+  text-align: center;
+  border-radius: 6%;
+  display: inline-block;
+  font-weight: bold;
+  min-width: 5rem;
+}
+
+.fantasy {
+  background-color: rgb(219, 163, 43);
+}
+
+.romance {
+  background-color: var(--primary);
+}
+
+.crime {
+  background-color: var(--dark);
+}
+
+.classics {
+  background-color: var(--medium);
+}
+
+.horror {
+  background-color: rgb(250, 111, 111);
+}
+
+.sci-fi {
+  background-color: var(--secondary);
+}
+
+.all {
+  background-color: rgb(212, 212, 212);
+}
+
+.clickable:hover {
+  color: var(--light);
+  cursor: pointer;
+}

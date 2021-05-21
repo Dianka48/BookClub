@@ -1,5 +1,5 @@
 .container {
-  padding: 0 5%;
+  padding: 1rem 5% 1rem 5%;
   background-color: var(--light);
   height: calc(100vh - 10rem);
   width: 100vw;
@@ -9,6 +9,12 @@
 
 @media (min-width: 768px) {
   .container {
-    padding: 0 10%;
+    padding: 1rem 10% 2rem 10%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 1rem 20% 2rem 20%;
   }
 }
