@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import readingImage from '../../assets/benefits3.jpg';
-import socialImage from '../../assets/social2.jpg';
+import readingImage from '../../assets/benefits.jpg';
+import socialImage from '../../assets/social.jpg';
 
 import styles from './ReadingBenefit.module.css';
 
