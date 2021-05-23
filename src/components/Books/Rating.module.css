@@ -1,7 +1,6 @@
 :root {
   --star-size: 2rem;
   --star-color: var(--dark);
-  --star-background: #fc0;
 }
 
 .stars {

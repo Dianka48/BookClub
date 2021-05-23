@@ -39,7 +39,8 @@ const BookList = () => {
         setFetchedBooks(booksArray);
         setFilteredBooks(booksArray);
         setBooksAreLoading(false);
-      });
+      })
+      .catch((ex) => console.error(ex));
   }, []);
 
   useEffect(() => {
@@ -52,7 +53,8 @@ const BookList = () => {
           setUserId(key);
         }
         setUserIdIsLoading(false);
-      });
+      })
+      .catch((ex) => console.error(ex));
   }, [email]);
 
   const filterCategoryHandler = (filteredCategory) => {
@@ -66,7 +68,7 @@ const BookList = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       {isLoading && <LoadingSpinner />}
       {!isLoading && (
         <Fragment>
@@ -88,7 +90,7 @@ const BookList = () => {
           ))}
         </Fragment>
       )}
-    </div>
+    </Fragment>
   );
 };
 

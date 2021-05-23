@@ -4,11 +4,12 @@ import Modal from '../UI/Modal';
 import SignInForm from '../Auth/SignInForm';
 import styles from './SignInOut.module.css';
 
-const SignInOut = () => {
+const SignInOut = ({ onCloseMenu }) => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [signingIn, setSigningIn] = useState(false);
 
   const handleSignInOut = () => {
+    onCloseMenu();
     if (isLoggedIn) {
       logout();
     } else {

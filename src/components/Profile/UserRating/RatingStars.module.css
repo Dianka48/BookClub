@@ -1,0 +1,12 @@
+.stars {
+  font-size: var(--star-size);
+  color: var(--star-color);
+  display: inline-block;
+  font-family: 'Times New Roman';
+  line-height: 1;
+  letter-spacing: 3px;
+}
+
+.star {
+  cursor: pointer;
+}

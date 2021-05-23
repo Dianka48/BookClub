@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Icons.module.css';
 
-import WishListIcon from './WishListIcon';
+import WishlistIcon from './WishlistIcon';
 import ReadIcon from './ReadIcon';
 
 const Icons = ({ wishlisted, read, onWishlistChange, onReadChange }) => {
   return (
     <div className={styles.icons}>
-      <WishListIcon
+      <WishlistIcon
         isWishlisted={wishlisted}
         onWishlistChange={onWishlistChange}
       />

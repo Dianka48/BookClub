@@ -9,12 +9,12 @@
   row-gap: 1rem;
 }
 
-.benefits h1 {
-  font-weight: normal;
-}
-
 .image {
   width: 70%;
+}
+
+.imagePlaceholder {
+  height: 22rem;
 }
 
 .image img {
@@ -36,6 +36,10 @@
     justify-content: space-between;
     text-align: left;
     column-gap: 2rem;
+  }
+
+  .imagePlaceholder {
+    height: 30rem;
   }
 
   .image {

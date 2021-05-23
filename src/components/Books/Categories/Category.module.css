@@ -2,7 +2,7 @@
   font-size: 1rem;
   text-transform: uppercase;
   padding: 0.5rem;
-  max-width: 6rem;
+  max-width: 10rem;
   text-align: center;
   border-radius: 6%;
   display: inline-block;
@@ -14,7 +14,8 @@
   background-color: rgb(219, 163, 43);
 }
 
-.romance {
+.romance,
+.wishlist {
   background-color: var(--primary);
 }
 
@@ -30,7 +31,8 @@
   background-color: rgb(250, 111, 111);
 }
 
-.sci-fi {
+.sci-fi,
+.read {
   background-color: var(--secondary);
 }
 

@@ -1,10 +1,15 @@
+.iconContainer {
+  display: inline-block;
+}
+
 .notInWishlist,
 .wishlisted,
 .read,
 .notRead {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--medium);
-  padding: 7px;
   border-radius: 7px;
   margin: 0.3rem 0.3rem 0 0;
   cursor: pointer;

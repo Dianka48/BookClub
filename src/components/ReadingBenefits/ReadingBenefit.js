@@ -1,17 +1,40 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import readingImage from '../../assets/benefits.jpg';
 import socialImage from '../../assets/social.jpg';
+import LoadingSpinner from '../UI/LoadingSpinner';
 
 import styles from './ReadingBenefit.module.css';
 
 const ReadingBenefit = () => {
+  const [image1Loaded, setImage1Loaded] = useState(false);
+  const [image2Loaded, setImage2Loaded] = useState(false);
+  console.log('component rerendered');
+  // const onLoadHandler = (event) => {
+  //   console.log('imagesLoaded');
+  //   setImage2Loaded(true);
+  //   setImage1Loaded(true);
+  // };
+
   return (
     <Fragment>
       <div className={styles.benefits}>
         <h1>Benefits of Reading</h1>
         <div className={styles.benefit}>
           <div className={styles.image}>
-            <img src={readingImage} alt="" />
+            {!image1Loaded && (
+              <div className={styles.imagePlaceholder}>
+                <LoadingSpinner />
+              </div>
+            )}
+            <img
+              style={{ display: image1Loaded ? 'block' : 'none' }}
+              onLoad={() => {
+                console.log('image1loaded');
+                setImage1Loaded(true);
+              }}
+              src={readingImage}
+              alt="Woman reading a book outside"
+            />
           </div>
           <p>
             Reading has a significant number of benefits on your health. Reading
@@ -24,7 +47,20 @@ const ReadingBenefit = () => {
         <h1>Why Join Our BookClub?</h1>
         <div className={styles.benefit}>
           <div className={styles.image}>
-            <img src={socialImage} alt="" />
+            {!image2Loaded && (
+              <div className={styles.imagePlaceholder}>
+                <LoadingSpinner />
+              </div>
+            )}
+            <img
+              style={{ display: image2Loaded ? 'block' : 'none' }}
+              onLoad={() => {
+                console.log('image2loaded');
+                setImage2Loaded(true);
+              }}
+              src={socialImage}
+              alt="Women reading books"
+            />
           </div>
           <p>
             If reading is one of your hobbies and you love reading books, why

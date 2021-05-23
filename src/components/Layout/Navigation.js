@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from './Navigation.module.css';
 import logo from '../../assets/logo.png';
@@ -20,9 +20,11 @@ const Navigation = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        <img src={logo} alt="logo" />
-      </div>
+      <Link to="/">
+        <div className={styles.logo}>
+          <img src={logo} alt="logo" />
+        </div>
+      </Link>
       <nav className={menuOpened ? styles.openedNav : styles.navigation}>
         <ul>
           <li>
@@ -67,7 +69,7 @@ const Navigation = () => {
             </NavLink>
           </li>
           <li>
-            <SignInOut />
+            <SignInOut onCloseMenu={menuCloseHandler} />
           </li>
         </ul>
         <div className={styles.hamburger} onClick={menuOpenHandler}>

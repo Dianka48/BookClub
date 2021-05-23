@@ -3,7 +3,8 @@
   text-align: center;
   padding: 0 1rem;
   animation: appear 30000ms ease;
-  margin: 5rem 0 0 0;
+  margin: calc(100vh - 90vh) 0;
+  opacity: 0;
 }
 
 @keyframes appear {
@@ -23,6 +24,6 @@
 
 @media (min-width: 768px) {
   .quoteContainer {
-    margin: 20rem 0 0 0;
+    margin: calc(100vh - 75vh) 0;
   }
 }

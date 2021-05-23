@@ -22,7 +22,8 @@ const QuoteContainer = () => {
           quotesArray.push(data[key]);
         }
         setFetchedQuotes(quotesArray);
-      });
+      })
+      .catch((ex) => console.error(ex));
   }, []);
 
   useEffect(() => {

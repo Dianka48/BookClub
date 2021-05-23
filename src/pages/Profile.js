@@ -1,19 +1,14 @@
-import { useContext } from 'react';
-import AuthContext from '../store/auth-context';
-
 import Navigation from '../components/Layout/Navigation';
 import Container from '../components/UI/Container';
 import Footer from '../components/Layout/Footer';
+import UserProfile from '../components/Profile/UserProfile';
 
 const Profile = () => {
-  const authCtx = useContext(AuthContext);
   return (
     <div>
       <Navigation />
       <Container>
-        <h1>Profile Page</h1>
-        <p>This is your profile, {authCtx.userName}</p>
-        <button onClick={authCtx.logout}>Sign Out</button>
+        <UserProfile />
       </Container>
       <Footer />
     </div>

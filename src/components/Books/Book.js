@@ -63,7 +63,7 @@ const Book = ({
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/wishlisted.json`,
       {
-        method: 'PUT',
+        method: 'PATCH',
         body: JSON.stringify({ [bookKey]: valueToPut }),
         headers: {
           'Content-Type': 'application/json',
@@ -74,11 +74,13 @@ const Book = ({
 
   const readChangeHandler = (read) => {
     const date = Date.now();
-    const valueToPut = read ? null : { date: date };
+    const valueToPut = read
+      ? null
+      : { date: date, userScore: 0, userReviews: 0, rated: false };
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
       {
-        method: 'PUT',
+        method: 'PATCH',
         body: JSON.stringify({ [bookKey]: valueToPut }),
         headers: {
           'Content-Type': 'application/json',

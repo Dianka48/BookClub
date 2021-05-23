@@ -64,6 +64,7 @@
 
 .hamburger {
   font-size: 3rem;
+  cursor: pointer;
 }
 
 li a.active {

@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import Navigation from '../components/Layout/Navigation';
 import Footer from '../components/Layout/Footer';
@@ -12,6 +12,7 @@ const BookDetail = () => {
   const [loadedBook, setLoadedBook] = useState(null);
 
   const params = useParams();
+  const history = useHistory();
 
   const { bookId } = params;
 
@@ -21,6 +22,10 @@ const BookDetail = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        if (!data) {
+          history.replace('/');
+          return;
+        }
         setLoadedBook(data);
         setIsLoading(false);
       });
