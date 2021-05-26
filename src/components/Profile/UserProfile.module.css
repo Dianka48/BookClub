@@ -6,3 +6,39 @@
   column-gap: 0.5rem;
   margin-top: 1rem;
 }
+
+.changeAvatar {
+  cursor: pointer;
+}
+
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcome p {
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+.changeAvatar .button {
+  width: 7rem;
+  font-size: 0.9rem;
+  margin: auto;
+  color: var(--secondary);
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .avatar {
+    width: 10rem;
+    height: 10rem;
+  }
+}

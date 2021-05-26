@@ -2,13 +2,16 @@ import Navigation from '../components/Layout/Navigation';
 import Container from '../components/UI/Container';
 import Footer from '../components/Layout/Footer';
 import UserProfile from '../components/Profile/UserProfile';
+import { ReadBooksContextProvider } from '../store/readBooks-context';
 
 const Profile = () => {
   return (
     <div>
       <Navigation />
       <Container>
-        <UserProfile />
+        <ReadBooksContextProvider>
+          <UserProfile />
+        </ReadBooksContextProvider>
       </Container>
       <Footer />
     </div>

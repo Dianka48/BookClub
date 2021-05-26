@@ -23,13 +23,13 @@ const BookDetail = () => {
       .then((response) => response.json())
       .then((data) => {
         if (!data) {
-          history.replace('/');
+          history.replace('/page-not-found');
           return;
         }
         setLoadedBook(data);
         setIsLoading(false);
       });
-  }, [bookId]);
+  }, [bookId, history]);
 
   return (
     <Fragment>

@@ -28,7 +28,9 @@ const Navigation = () => {
       <nav className={menuOpened ? styles.openedNav : styles.navigation}>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink

@@ -1,8 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import ReadIcon from '../Books/Icons/ReadIcon';
 import Category from '../Books/Categories/Category';
 import UserRating from './UserRating/UserRating';
+import ReadBooksContext from '../../store/readBooks-context';
+import BookDate from '../UI/BookDate';
 
 const ReadBook = ({
   bookId,
@@ -21,8 +24,10 @@ const ReadBook = ({
 }) => {
   const [removedFromRead, setRemovedFromRead] = useState(false);
   const [newUserRating, setNewUserRating] = useState(0);
+  const { removeReadBook } = useContext(ReadBooksContext);
 
   const readChangeHandler = (_read) => {
+    removeReadBook();
     setRemovedFromRead(true);
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
@@ -68,7 +73,8 @@ const ReadBook = ({
       {!removedFromRead && (
         <div>
           <p>{author}</p>
-          <p>{title}</p>
+          <Link to={`/books/${bookId}`}>{title}</Link>
+          <BookDate timestamp={1621743842308} time={false} />
           <Category category={category} extraClasses={[category]} />
           <ReadIcon isRead={true} onReadChange={readChangeHandler} />
           <UserRating

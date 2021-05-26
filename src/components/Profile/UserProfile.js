@@ -6,6 +6,9 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import AuthContext from '../../store/auth-context';
 import Wishlist from './Wishlist';
 import Read from './Read';
+import ReadBooksContext from '../../store/readBooks-context';
+import AvatarContext from '../../store/avatar-context';
+import AvatarForm from './Avatars/AvatarForm';
 
 const UserProfile = () => {
   const [filteredCategory, setFilteredCategory] = useState('wishlist');
@@ -15,13 +18,27 @@ const UserProfile = () => {
   const [whishlistedBookObj, setWishListedBookObj] = useState(null);
   const [readBookObj, setReadBookObj] = useState(null);
   const [userId, setUserId] = useState('');
+  const [choosingAvatar, setChoosingAvatar] = useState(false);
+
+  const { readBooksNum } = useContext(ReadBooksContext);
+  const { avatar } = useContext(AvatarContext);
 
   const isLoading = booksAreLoading || userDataAreLoading;
 
   const { email, userName } = useContext(AuthContext);
 
+  const avatarImage = require(`../../assets/avatars/${avatar}.png`);
+
   const onFilterCategory = (selectedCategory) => {
     setFilteredCategory(selectedCategory);
+  };
+
+  const avatarClickHandler = () => {
+    setChoosingAvatar(true);
+  };
+
+  const avatarCloseHandler = () => {
+    setChoosingAvatar(false);
   };
 
   useEffect(() => {
@@ -48,9 +65,9 @@ const UserProfile = () => {
       .then((data) => {
         for (const key in data) {
           setWishListedBookObj(
-            data[key].lists.wishlisted ? data[key].lists.wishlisted : null,
+            data[key]?.lists?.wishlisted ? data[key].lists.wishlisted : null,
           );
-          setReadBookObj(data[key].lists.read ? data[key].lists.read : null);
+          setReadBookObj(data[key]?.lists?.read ? data[key].lists.read : null);
           setUserId(key);
         }
         setUserDataAreLoading(false);
@@ -59,7 +76,23 @@ const UserProfile = () => {
 
   return (
     <Fragment>
-      <h1>Welcome to your Book Diary, {userName}</h1>
+      {choosingAvatar && <AvatarForm onClose={avatarCloseHandler} />}
+      <div className={styles.welcome}>
+        <div className={styles.changeAvatar} onClick={avatarClickHandler}>
+          <img
+            title="Change Avatar"
+            className={styles.avatar}
+            src={avatarImage.default}
+            alt="avatar"
+          />
+          <p className={styles.button}>Change Avatar</p>
+        </div>
+        <h1>Welcome to your Book Diary, {userName}</h1>
+        <p className={styles.readBooks}>
+          {' '}
+          You have read {readBooksNum} books so far.
+        </p>
+      </div>
       <div className={styles.categories}>
         <Category
           category="wishlist"

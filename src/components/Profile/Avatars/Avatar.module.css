@@ -1,0 +1,11 @@
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.selected {
+  border: 2px solid var(--secondary);
+}

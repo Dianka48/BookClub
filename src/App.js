@@ -29,8 +29,11 @@ function App() {
       <Route path="/reading-benefits" exact>
         <ReadingBenefits />
       </Route>
+      <Route path="/page-not-found" exact>
+        <h1>Page Not Found</h1>
+      </Route>
       <Route path="*">
-        <Redirect to="/" />
+        <Redirect to="/page-not-found" />
       </Route>
     </Switch>
   );

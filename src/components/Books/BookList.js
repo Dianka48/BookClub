@@ -4,6 +4,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 
 import Book from './Book';
 import Categories from './Categories/Categories';
+import Sorting from '../Profile/Sorting';
 
 const BookList = () => {
   const [fetchedBooks, setFetchedBooks] = useState(null);
@@ -12,6 +13,13 @@ const BookList = () => {
   const [userId, setUserId] = useState(null);
   const [filteredBooks, setFilteredBooks] = useState(null);
   const { email } = useContext(AuthContext);
+  const [sortedBooks, setSortedBooks] = useState(null);
+  const [sorting, setSorting] = useState({
+    sortedBy: 'Rating',
+    order: 'asc',
+    label: 'Title',
+    orderLabel: 'Ascending',
+  });
 
   const isLoading = booksAreLoading || userIdIsLoading;
 
@@ -38,6 +46,7 @@ const BookList = () => {
         });
         setFetchedBooks(booksArray);
         setFilteredBooks(booksArray);
+        setSortedBooks(booksArray);
         setBooksAreLoading(false);
       })
       .catch((ex) => console.error(ex));
@@ -57,6 +66,55 @@ const BookList = () => {
       .catch((ex) => console.error(ex));
   }, [email]);
 
+  useEffect(() => {
+    let sortedArray;
+    if (filteredBooks) {
+      sortedArray = [...filteredBooks];
+    } else if (fetchedBooks) {
+      sortedArray = [...fetchedBooks];
+    } else return;
+
+    if (sorting.sortedBy === 'Title') {
+      sortedArray.sort((book1, book2) => {
+        return sorting.order === 'asc'
+          ? book1.title.localeCompare(book2.title)
+          : book2.title.localeCompare(book1.title);
+      });
+    } else if (sorting.sortedBy === 'Rating') {
+      sortedArray.sort((book1, book2) => {
+        const ratingBook1 = book1.score / book1.reviews;
+        const ratingBook2 = book2.score / book2.reviews;
+        return sorting.order === 'asc'
+          ? ratingBook1 - ratingBook2
+          : ratingBook2 - ratingBook1;
+      });
+    }
+
+    setSortedBooks(sortedArray);
+  }, [filteredBooks, sorting, fetchedBooks]);
+
+  const changeOrderHandler = () => {
+    setSorting((prev) => {
+      return {
+        ...prev,
+        order: `${prev.order === 'asc' ? 'desc' : 'asc'}`,
+        orderLabel: `${
+          prev.orderLabel === 'Ascending' ? 'Descending' : 'Ascending'
+        }`,
+      };
+    });
+  };
+
+  const changeSortedByHandler = () => {
+    setSorting((prev) => {
+      return {
+        ...prev,
+        sortedBy: `${prev.sortedBy === 'Title' ? 'Rating' : 'Title'}`,
+        label: `${prev.label === 'Title' ? 'Rating' : 'Title'}`,
+      };
+    });
+  };
+
   const filterCategoryHandler = (filteredCategory) => {
     if (filteredCategory === 'all') {
       setFilteredBooks(fetchedBooks);
@@ -73,7 +131,12 @@ const BookList = () => {
       {!isLoading && (
         <Fragment>
           <Categories onFilterCategory={filterCategoryHandler} />
-          {filteredBooks.map((book) => (
+          <Sorting
+            sorting={sorting}
+            onChangeOrderHandler={changeOrderHandler}
+            onChangeSortedByHandler={changeSortedByHandler}
+          />
+          {sortedBooks.map((book) => (
             <Book
               key={book.bookKey}
               bookKey={book.bookKey}

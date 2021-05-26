@@ -1,0 +1,45 @@
+.sorting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labels,
+.buttons {
+  display: flex;
+  column-gap: 0.3rem;
+}
+
+.labels {
+  flex-direction: column;
+}
+
+.buttons button {
+  cursor: pointer;
+  border: none;
+  padding: 0 0.7rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 15px;
+  color: var(--secondary);
+  background-color: var(--medium);
+  font-weight: bold;
+}
+
+button.arrow {
+  border-radius: 50%;
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 0;
+}
+
+.button.arrow:hover,
+.buttons button:hover {
+  color: var(--light);
+}

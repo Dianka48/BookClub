@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Rating from './Rating';
 
 import styles from './SelectedBook.module.css';
@@ -8,16 +8,18 @@ import { Fragment } from 'react';
 const SelectedBook = ({
   book: { author, category, image, reviews, score, text, title, year },
 }) => {
+  const history = useHistory();
+
   const rating =
     Math.round(
       (Number(reviews) === 0 ? 0 : Number(score) / Number(reviews)) * 100,
     ) / 100;
   return (
     <Fragment>
-      <div className={styles.linkBack}>
-        <Link to="/books">
+      <div onClick={() => history.goBack()} className={styles.linkBack}>
+        <p className={styles.link}>
           <span className={styles.arrow}>&#8617;</span> Back to Books
-        </Link>
+        </p>
       </div>
       <div className={styles.book}>
         <h1>{title}</h1>

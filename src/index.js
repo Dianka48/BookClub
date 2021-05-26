@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 import { AuthContextProvider } from './store/auth-context';
+import { AvatarContextProvider } from './store/avatar-context';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <AvatarContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AvatarContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),

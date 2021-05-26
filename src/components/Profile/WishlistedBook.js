@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import WishlistIcon from '../Books/Icons/WishlistIcon';
 import Rating from '../Books/Rating';
@@ -36,7 +37,7 @@ const WishlistedBook = ({
       {!removedFromWishlist && (
         <div>
           <p>{author}</p>
-          <p>{title}</p>
+          <Link to={`/books/${bookId}`}>{title}</Link>
           <Category category={category} extraClasses={[category]} />
           <WishlistIcon
             isWishlisted={true}

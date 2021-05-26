@@ -1,0 +1,13 @@
+.action {
+  display: flex;
+  margin: 1.5rem 0;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .action {
+    margin-top: 3rem;
+  }
+}
