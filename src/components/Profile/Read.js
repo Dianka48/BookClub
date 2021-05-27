@@ -4,7 +4,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import ReadBook from './ReadBook';
 import Sorting from '../Profile/Sorting';
 
-const Read = ({ allBooks, readBooksObj, userId }) => {
+const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
   const [sortedBooks, setSortedBooks] = useState(null);
   const [sorting, setSorting] = useState({
     sortedBy: 'Date',
@@ -12,6 +12,10 @@ const Read = ({ allBooks, readBooksObj, userId }) => {
     label: 'Title',
     orderLabel: 'Descending',
   });
+
+  const onChangeDateInRead = (dateObj) => {
+    onChangeDateInProfile(dateObj);
+  };
 
   useEffect(() => {
     const readArray = [];
@@ -86,6 +90,7 @@ const Read = ({ allBooks, readBooksObj, userId }) => {
             userReviews={book.userReviews}
             date={book.date}
             rated={book.rated}
+            onChangeDate={onChangeDateInRead}
           />
         ))}
     </Fragment>

@@ -85,6 +85,10 @@ li a.active {
   z-index: 10;
 }
 
+.profile {
+  font-weight: bold;
+}
+
 @keyframes slide-down {
   from {
     opacity: 0;

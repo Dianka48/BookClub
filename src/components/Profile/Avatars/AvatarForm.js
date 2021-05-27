@@ -16,9 +16,9 @@ const avatars = [
 ];
 
 const AvatarForm = ({ onClose }) => {
-  const { changeAvatar } = useContext(AvatarContext);
+  const { avatar, changeAvatar } = useContext(AvatarContext);
 
-  const [selectedAvatar, setSelectedAvatar] = useState('');
+  const [selectedAvatar, setSelectedAvatar] = useState(avatar);
 
   const selectAvatarHandler = (avatar) => {
     setSelectedAvatar(avatar);

@@ -8,12 +8,6 @@ import styles from './ReadingBenefit.module.css';
 const ReadingBenefit = () => {
   const [image1Loaded, setImage1Loaded] = useState(false);
   const [image2Loaded, setImage2Loaded] = useState(false);
-  console.log('component rerendered');
-  // const onLoadHandler = (event) => {
-  //   console.log('imagesLoaded');
-  //   setImage2Loaded(true);
-  //   setImage1Loaded(true);
-  // };
 
   return (
     <Fragment>
@@ -29,7 +23,6 @@ const ReadingBenefit = () => {
             <img
               style={{ display: image1Loaded ? 'block' : 'none' }}
               onLoad={() => {
-                console.log('image1loaded');
                 setImage1Loaded(true);
               }}
               src={readingImage}
@@ -55,7 +48,6 @@ const ReadingBenefit = () => {
             <img
               style={{ display: image2Loaded ? 'block' : 'none' }}
               onLoad={() => {
-                console.log('image2loaded');
                 setImage2Loaded(true);
               }}
               src={socialImage}

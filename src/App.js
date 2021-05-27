@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import AuthContext from './store/auth-context';
 import BookDetail from './pages/BookDetail';
 import ReadingBenefits from './pages/ReadingBenefits';
+import BookOfTheMonth from './pages/BookOfTheMonth';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -28,6 +29,9 @@ function App() {
       </Route>
       <Route path="/reading-benefits" exact>
         <ReadingBenefits />
+      </Route>
+      <Route path="/book-of-the-month" exact>
+        <BookOfTheMonth />
       </Route>
       <Route path="/page-not-found" exact>
         <h1>Page Not Found</h1>

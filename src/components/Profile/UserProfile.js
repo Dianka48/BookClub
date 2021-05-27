@@ -19,6 +19,7 @@ const UserProfile = () => {
   const [readBookObj, setReadBookObj] = useState(null);
   const [userId, setUserId] = useState('');
   const [choosingAvatar, setChoosingAvatar] = useState(false);
+  const [newDate, setNewDate] = useState(null);
 
   const { readBooksNum } = useContext(ReadBooksContext);
   const { avatar } = useContext(AvatarContext);
@@ -39,6 +40,10 @@ const UserProfile = () => {
 
   const avatarCloseHandler = () => {
     setChoosingAvatar(false);
+  };
+
+  const changeDateHandler = (dateObj) => {
+    setNewDate(dateObj);
   };
 
   useEffect(() => {
@@ -72,7 +77,7 @@ const UserProfile = () => {
         }
         setUserDataAreLoading(false);
       });
-  }, [email, filteredCategory]);
+  }, [email, filteredCategory, newDate]);
 
   return (
     <Fragment>
@@ -115,6 +120,7 @@ const UserProfile = () => {
       )}
       {filteredCategory === 'books i read' && !isLoading && (
         <Read
+          onChangeDateInProfile={changeDateHandler}
           userId={userId}
           allBooks={fetchedBooks}
           readBooksObj={readBookObj}

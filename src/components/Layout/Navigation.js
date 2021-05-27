@@ -50,17 +50,6 @@ const Navigation = () => {
               Book of the Month
             </NavLink>
           </li>
-          {isLoggedIn && (
-            <li>
-              <NavLink
-                to="/profile"
-                activeClassName={styles.active}
-                onClick={menuCloseHandler}
-              >
-                {userName + `'s Book Diary`}
-              </NavLink>
-            </li>
-          )}
           <li>
             <NavLink
               to="/reading-benefits"
@@ -70,6 +59,18 @@ const Navigation = () => {
               Why Reading?
             </NavLink>
           </li>
+          {isLoggedIn && (
+            <li>
+              <NavLink
+                className={styles.profile}
+                to="/profile"
+                activeClassName={styles.active}
+                onClick={menuCloseHandler}
+              >
+                {userName + `'s Book Diary`}
+              </NavLink>
+            </li>
+          )}
           <li>
             <SignInOut onCloseMenu={menuCloseHandler} />
           </li>
