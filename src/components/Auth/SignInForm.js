@@ -24,7 +24,6 @@ const SignInForm = ({ onClose }) => {
     // Add validation
 
     let userName;
-    let voted;
 
     Promise.all([
       fetch(
@@ -56,7 +55,6 @@ const SignInForm = ({ onClose }) => {
       .then(([userNameData, signInData]) => {
         for (const key in userNameData) {
           userName = userNameData[key].userName;
-          voted = userNameData[key].voted;
         }
         const expirationTime = new Date(
           new Date().getTime() + Number(signInData.expiresIn) * 1000,
@@ -66,7 +64,6 @@ const SignInForm = ({ onClose }) => {
           expirationTime.toString(),
           signInData.email,
           userName,
-          voted,
         );
         if (match.path === '/') {
           history.replace('./profile');

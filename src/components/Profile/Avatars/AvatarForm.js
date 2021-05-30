@@ -32,17 +32,18 @@ const AvatarForm = ({ onClose }) => {
 
   return (
     <Modal onClose={onClose}>
-      <h1>Choose Your Avatar</h1>
+      <h1 className={styles.avatarHeading}>Choose Your Avatar</h1>
       <form onSubmit={changeAvatarHandler}>
-        {avatars.map((avatar) => (
-          <Avatar
-            key={avatar}
-            value={avatar}
-            onSelect={selectAvatarHandler}
-            selected={selectedAvatar}
-          />
-        ))}
-
+        <div className={styles.avatars}>
+          {avatars.map((avatar) => (
+            <Avatar
+              key={avatar}
+              value={avatar}
+              onSelect={selectAvatarHandler}
+              selected={selectedAvatar}
+            />
+          ))}
+        </div>
         <div className={styles.action}>
           <Button type="submit" onClick={() => {}} extraClass="button--primary">
             Change

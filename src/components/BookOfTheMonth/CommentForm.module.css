@@ -6,8 +6,20 @@
   flex-wrap: wrap;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 @media (min-width: 768px) {
   .action {
     margin-top: 3rem;
+  }
+
+  .error {
+    font-size: 1.2rem;
   }
 }

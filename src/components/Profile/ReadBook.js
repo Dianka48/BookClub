@@ -101,7 +101,11 @@ const ReadBook = ({
     <Fragment>
       {!removedFromRead && (
         <div>
+          <div className={styles.image}>
+            <img src={image} alt={title} />
+          </div>
           <p>{author}</p>
+          <p>{year}</p>
           <Link to={`/books/${bookId}`}>{title}</Link>
           <BookDate timestamp={date} time={false} />
 
@@ -117,7 +121,7 @@ const ReadBook = ({
           )}
 
           {
-            <div className={changingDate ? '' : styles.hidden}>
+            <div className={changingDate ? styles.changeDate : styles.hidden}>
               <div className={styles.input}>
                 <Input
                   ref={dateInputRef}

@@ -48,7 +48,6 @@ const SignUpForm = ({ onClose }) => {
               body: JSON.stringify({
                 userName: enteredUserName,
                 email: enteredEmail,
-                voted: false,
               }),
               headers: {
                 'Content-Type': 'application/json',

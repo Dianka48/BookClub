@@ -11,7 +11,11 @@ import AvatarContext from '../../store/avatar-context';
 import AvatarForm from './Avatars/AvatarForm';
 
 const UserProfile = () => {
-  const [filteredCategory, setFilteredCategory] = useState('wishlist');
+  const [filteredCategory, setFilteredCategory] = useState(
+    localStorage.getItem('category')
+      ? localStorage.getItem('category')
+      : 'wishlist',
+  );
   const [fetchedBooks, setFetchedBooks] = useState(null);
   const [booksAreLoading, setBooksAreLoading] = useState(true);
   const [userDataAreLoading, setUserDataAreLoading] = useState(true);
@@ -32,6 +36,7 @@ const UserProfile = () => {
 
   const onFilterCategory = (selectedCategory) => {
     setFilteredCategory(selectedCategory);
+    localStorage.setItem('category', selectedCategory);
   };
 
   const avatarClickHandler = () => {
@@ -43,6 +48,7 @@ const UserProfile = () => {
   };
 
   const changeDateHandler = (dateObj) => {
+    console.log('setting new date', dateObj);
     setNewDate(dateObj);
   };
 

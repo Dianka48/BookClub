@@ -1,0 +1,106 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url('../assets/page-not-found.jpg') no-repeat center center /
+    cover;
+  overflow: hidden;
+  position: relative;
+}
+
+.number {
+  font-family: 'Lobster', Georgia, Times, serif;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem;
+  color: var(--secondary);
+}
+
+.number span:first-child {
+  font-size: 5rem;
+}
+
+.notFound {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  font-size: 1.5rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(238, 226, 220, 0.45);
+  border-radius: 15px;
+  padding: 1rem;
+  font-weight: bold;
+  row-gap: 1rem;
+  color: var(--secondary);
+}
+
+.lost {
+  text-align: right;
+}
+.button {
+  cursor: pointer;
+  border: none;
+  padding: 0.3rem;
+  border-radius: 15px;
+  color: var(--secondary);
+  width: 12rem;
+  font-size: 1rem;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+.button:hover,
+.button:focus,
+.button:active {
+  color: var(--secondary);
+}
+
+@media (min-width: 650px) {
+  .notFound {
+    left: 15%;
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .notFound {
+    left: 15%;
+    font-size: 2rem;
+    width: 70%;
+  }
+
+  .number {
+    font-size: 5rem;
+    padding: 3rem 2rem;
+  }
+
+  .number span:first-child {
+    font-size: 8rem;
+  }
+
+  .button {
+    width: 15rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .notFound {
+    left: 25%;
+    width: 50%;
+  }
+
+  .number {
+    font-size: 6rem;
+    padding: 4rem 3rem;
+  }
+
+  .number span:first-child {
+    font-size: 10rem;
+  }
+}

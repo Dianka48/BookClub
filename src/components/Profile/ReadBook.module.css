@@ -1,6 +1,6 @@
 .button {
   width: 2rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 .input {
@@ -11,6 +11,12 @@
   width: 5rem;
   display: inline-block;
   margin-right: 1rem;
+  font-size: 0.8rem;
+}
+
+.changeDate {
+  display: flex;
+  align-items: center;
 }
 
 .hidden {

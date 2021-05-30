@@ -36,6 +36,10 @@
   padding: 0;
 }
 
+.changeAvatar .button:hover {
+  color: var(--primary);
+}
+
 @media (min-width: 768px) {
   .avatar {
     width: 10rem;

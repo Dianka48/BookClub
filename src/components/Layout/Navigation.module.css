@@ -131,7 +131,7 @@ li a.active {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1366) {
   .header {
     padding: 0 20%;
   }

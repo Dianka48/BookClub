@@ -1,0 +1,44 @@
+.wishlist,
+.read {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+}
+
+.noBooks {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.bookList {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .wishlist,
+  .read {
+    font-size: 2rem;
+  }
+
+  .noBooks {
+    font-size: 1.4rem;
+    margin-top: 5rem;
+  }
+
+  .bookList {
+    margin: auto;
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .noBooks {
+    font-size: 1.6rem;
+  }
+
+  .bookList {
+    margin: auto;
+    width: 80%;
+  }
+}

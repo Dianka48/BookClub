@@ -18,7 +18,7 @@ const SelectedBook = ({
     <Fragment>
       <div onClick={() => history.goBack()} className={styles.linkBack}>
         <p className={styles.link}>
-          <span className={styles.arrow}>&#8617;</span> Back to Books
+          <span className={styles.arrow}>&#8617;</span> Go Back
         </p>
       </div>
       <div className={styles.book}>

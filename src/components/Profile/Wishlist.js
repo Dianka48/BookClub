@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
-import styles from './Wishlist.module.css';
+import styles from './WishlistRead.module.css';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import WishlistedBook from './WishlistedBook';
 import Sorting from './Sorting';
@@ -75,21 +75,23 @@ const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
         <p className={styles.noBooks}>You have no books in your wishlist.</p>
       )}
       {!sortedBooks && <LoadingSpinner />}
-      {sortedBooks &&
-        sortedBooks.map((book) => (
-          <WishlistedBook
-            key={book.bookId}
-            bookId={book.bookId}
-            userId={userId}
-            author={book.author}
-            title={book.title}
-            reviews={book.reviews}
-            score={book.score}
-            category={book.category}
-            image={book.image}
-            year={book.year}
-          />
-        ))}
+      <div className={styles.bookList}>
+        {sortedBooks &&
+          sortedBooks.map((book) => (
+            <WishlistedBook
+              key={book.bookId}
+              bookId={book.bookId}
+              userId={userId}
+              author={book.author}
+              title={book.title}
+              reviews={book.reviews}
+              score={book.score}
+              category={book.category}
+              image={book.image}
+              year={book.year}
+            />
+          ))}
+      </div>
     </Fragment>
   );
 };

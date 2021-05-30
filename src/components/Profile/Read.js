@@ -4,6 +4,8 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import ReadBook from './ReadBook';
 import Sorting from '../Profile/Sorting';
 
+import styles from './WishlistRead.module.css';
+
 const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
   const [sortedBooks, setSortedBooks] = useState(null);
   const [sorting, setSorting] = useState({
@@ -13,9 +15,9 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
     orderLabel: 'Descending',
   });
 
-  const onChangeDateInRead = (dateObj) => {
-    onChangeDateInProfile(dateObj);
-  };
+  // const onChangeDateInRead = (dateObj) => {
+  //   onChangeDateInProfile(dateObj);
+  // };
 
   useEffect(() => {
     const readArray = [];
@@ -67,11 +69,15 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
 
   return (
     <Fragment>
+      <h2 className={styles.read}>Books You Have Read</h2>
       <Sorting
         sorting={sorting}
         onChangeOrderHandler={changeOrderHandler}
         onChangeSortedByHandler={changeSortedByHandler}
       />
+      {sortedBooks?.length < 1 && (
+        <p className={styles.noBooks}>You have no books in your wishlist.</p>
+      )}
       {!sortedBooks && <LoadingSpinner />}
       {sortedBooks &&
         sortedBooks.map((book) => (
@@ -90,7 +96,7 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
             userReviews={book.userReviews}
             date={book.date}
             rated={book.rated}
-            onChangeDate={onChangeDateInRead}
+            onChangeDate={onChangeDateInProfile}
           />
         ))}
     </Fragment>

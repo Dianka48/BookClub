@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from './WishlistedBook.module.css';
+
 import WishlistIcon from '../Books/Icons/WishlistIcon';
 import Rating from '../Books/Rating';
 import Category from '../Books/Categories/Category';
@@ -35,15 +37,31 @@ const WishlistedBook = ({
   return (
     <Fragment>
       {!removedFromWishlist && (
-        <div>
-          <p>{author}</p>
-          <Link to={`/books/${bookId}`}>{title}</Link>
-          <Category category={category} extraClasses={[category]} />
-          <WishlistIcon
-            isWishlisted={true}
-            onWishlistChange={wishlistChangeHandler}
-          />
-          <Rating reviews={reviews} score={score} />
+        <div className={styles.wishlistedBook}>
+          <div className={styles.image}>
+            <Link to={`/books/${bookId}`}>
+              <img src={image} alt={title} />
+            </Link>
+          </div>
+          <div className={styles.bookInfo}>
+            <h2>
+              <Link to={`/books/${bookId}`}>{title}</Link>
+            </h2>
+            <div className={styles.author}>
+              <p>{author}</p>
+              <p>{year}</p>
+            </div>
+            <Rating reviews={reviews} score={score} />
+            <div className={styles.icons}>
+              <Category category={category} extraClasses={[category]} />
+              <div className={styles.icon}>
+                <WishlistIcon
+                  isWishlisted={true}
+                  onWishlistChange={wishlistChangeHandler}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </Fragment>

@@ -8,6 +8,7 @@ import AuthContext from './store/auth-context';
 import BookDetail from './pages/BookDetail';
 import ReadingBenefits from './pages/ReadingBenefits';
 import BookOfTheMonth from './pages/BookOfTheMonth';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -34,7 +35,7 @@ function App() {
         <BookOfTheMonth />
       </Route>
       <Route path="/page-not-found" exact>
-        <h1>Page Not Found</h1>
+        <PageNotFound />
       </Route>
       <Route path="*">
         <Redirect to="/page-not-found" />
