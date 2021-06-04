@@ -7,7 +7,7 @@ import Modal from '../UI/Modal';
 import AuthContext from '../../store/auth-context';
 import SignInForm from '../Auth/SignInForm';
 
-const Discussion = ({ bookId }) => {
+const Discussion = ({ bookId, title }) => {
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [addingNewComment, setAddingNewComment] = useState(false);
@@ -59,6 +59,7 @@ const Discussion = ({ bookId }) => {
             onClose={onClose}
             onAddComment={addCommentHandler}
             bookId={bookId}
+            title={title}
           />
         </Modal>
       )}

@@ -1,0 +1,44 @@
+.container {
+  height: 4.5rem;
+  padding: 0.4rem 5%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  bottom: 5rem;
+  background-color: var(--primary);
+  width: 100vw;
+  column-gap: 0.5rem;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.text {
+  height: 1.3rem;
+  width: 100%;
+  background-color: var(--primary);
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px dotted black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5rem;
+  color: var(--medium);
+}
+
+.text span {
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0.4rem 10%;
+  }
+}
+
+@media (min-width: 1366px) {
+  .container {
+    padding: 0.4rem 20%;
+  }
+}

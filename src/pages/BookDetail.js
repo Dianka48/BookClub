@@ -6,6 +6,8 @@ import Footer from '../components/Layout/Footer';
 import Container from '../components/UI/Container';
 import SelectedBook from '../components/Books/SelectedBook';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import TopReaders from '../components/TopReaders/TopReaders';
+import { ReadBooksContextProvider } from '../store/readBooks-context';
 
 const BookDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +40,9 @@ const BookDetail = () => {
         {isLoading && <LoadingSpinner />}
         {!isLoading && loadedBook && <SelectedBook book={loadedBook} />}
       </Container>
+      <ReadBooksContextProvider>
+        <TopReaders />
+      </ReadBooksContextProvider>
       <Footer />
     </Fragment>
   );

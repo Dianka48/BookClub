@@ -48,7 +48,6 @@ const UserProfile = () => {
   };
 
   const changeDateHandler = (dateObj) => {
-    console.log('setting new date', dateObj);
     setNewDate(dateObj);
   };
 
@@ -101,7 +100,8 @@ const UserProfile = () => {
         <h1>Welcome to your Book Diary, {userName}</h1>
         <p className={styles.readBooks}>
           {' '}
-          You have read {readBooksNum} books so far.
+          You have read {readBooksNum === 0 ? 'no' : readBooksNum}{' '}
+          {readBooksNum === 1 ? 'book' : 'books'} so far.
         </p>
       </div>
       <div className={styles.categories}>

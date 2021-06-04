@@ -10,6 +10,9 @@
   row-gap: 0.2rem;
   text-align: center;
   padding: 1rem 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 
 .footer a {

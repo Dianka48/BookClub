@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './PageNotFound.module.css';
 
 const PageNotFound = () => {
@@ -11,7 +13,9 @@ const PageNotFound = () => {
         <p className={styles.quote}>Not all those who wander are lost...</p>
         <p className={styles.lost}>...but you probably are.</p>
       </div>
-      <button className={styles.button}>Find a way home</button>
+      <Link to="/">
+        <button className={styles.button}>Find a way home</button>
+      </Link>
     </div>
   );
 };

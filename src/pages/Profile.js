@@ -3,16 +3,18 @@ import Container from '../components/UI/Container';
 import Footer from '../components/Layout/Footer';
 import UserProfile from '../components/Profile/UserProfile';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
+import TopReaders from '../components/TopReaders/TopReaders';
 
 const Profile = () => {
   return (
     <div>
       <Navigation />
-      <Container>
-        <ReadBooksContextProvider>
+      <ReadBooksContextProvider>
+        <Container>
           <UserProfile />
-        </ReadBooksContextProvider>
-      </Container>
+        </Container>
+        <TopReaders />
+      </ReadBooksContextProvider>
       <Footer />
     </div>
   );

@@ -100,32 +100,27 @@ const ReadBook = ({
   return (
     <Fragment>
       {!removedFromRead && (
-        <div>
-          <div className={styles.image}>
-            <img src={image} alt={title} />
+        <Fragment>
+          <div className={styles.date}>
+            <BookDate timestamp={date} time={false} />
+            {!changingDate && (
+              <div className={styles.button}>
+                <Button
+                  onClick={() => setChangingDate(true)}
+                  extraClass="button--medium"
+                >
+                  Change
+                </Button>
+              </div>
+            )}
           </div>
-          <p>{author}</p>
-          <p>{year}</p>
-          <Link to={`/books/${bookId}`}>{title}</Link>
-          <BookDate timestamp={date} time={false} />
-
-          {!changingDate && (
-            <div className={styles.button}>
-              <Button
-                onClick={() => setChangingDate(true)}
-                extraClass="button--medium"
-              >
-                Change
-              </Button>
-            </div>
-          )}
 
           {
             <div className={changingDate ? styles.changeDate : styles.hidden}>
               <div className={styles.input}>
                 <Input
                   ref={dateInputRef}
-                  label="Select New Date"
+                  label="Select New Date:"
                   input={{ id: 'date', type: 'date', required: true }}
                 />
               </div>
@@ -147,19 +142,44 @@ const ReadBook = ({
               </div>
             </div>
           }
-          <Category category={category} extraClasses={[category]} />
-          <ReadIcon isRead={true} onReadChange={readChangeHandler} />
-          <UserRating
-            userId={userId}
-            bookId={bookId}
-            rated={rated}
-            userReviews={userReviews}
-            userScore={userScore}
-            reviews={reviews}
-            score={score}
-            onGetUserRating={getUserRatingHandler}
-          />
-        </div>
+
+          <div className={styles.readBook}>
+            <div className={styles.image}>
+              <Link to={`/books/${bookId}`}>
+                <img src={image} alt={title} />
+              </Link>
+            </div>
+
+            <div className={styles.bookInfo}>
+              <h2>
+                <Link to={`/books/${bookId}`}>{title}</Link>
+              </h2>
+              <div className={styles.author}>
+                <p>{author}</p>
+                <p>{year}</p>
+              </div>
+              <div className={styles.ratingContainer}>
+                <span className={styles.rating}>Your Rating:</span>
+                <UserRating
+                  userId={userId}
+                  bookId={bookId}
+                  rated={rated}
+                  userReviews={userReviews}
+                  userScore={userScore}
+                  reviews={reviews}
+                  score={score}
+                  onGetUserRating={getUserRatingHandler}
+                />
+              </div>
+              <div className={styles.icons}>
+                <Category category={category} extraClasses={[category]} />
+                <div className={styles.icon}>
+                  <ReadIcon isRead={true} onReadChange={readChangeHandler} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Fragment>
       )}
     </Fragment>
   );

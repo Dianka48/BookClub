@@ -68,7 +68,10 @@ const BookOfTheMonthInfo = ({ month }) => {
             </div>
             <p className={styles.text}>{currentBookOfTheMonth.text}</p>
           </div>
-          <Discussion bookId={currentBookOfTheMonth.bookId} />
+          <Discussion
+            bookId={currentBookOfTheMonth.bookId}
+            title={currentBookOfTheMonth.title}
+          />
         </Fragment>
       )}
     </Fragment>

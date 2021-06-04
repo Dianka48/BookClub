@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from './BookDate.module.css';
-
 const BookDate = ({ timestamp, time }) => {
   const [date, setDate] = useState('');
 
@@ -24,7 +22,7 @@ const BookDate = ({ timestamp, time }) => {
     setDate(dateString);
   }, [timestamp, time]);
 
-  return <span className={styles.date}>{date}</span>;
+  return <span>{date}</span>;
 };
 
 export default BookDate;

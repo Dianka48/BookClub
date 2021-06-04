@@ -3,7 +3,7 @@ import styles from './CommentForm.module.css';
 import Button from '../UI/Button';
 import AuthContext from '../../store/auth-context';
 
-const CommentForm = ({ onClose, onAddComment, bookId }) => {
+const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
   const textAreaRef = useRef();
   const { email } = useContext(AuthContext);
   const [error, setError] = useState('');
@@ -26,7 +26,7 @@ const CommentForm = ({ onClose, onAddComment, bookId }) => {
               userEmail: data[key].email,
               avatar: data[key].avatar,
               userName: data[key].userName,
-              date: Date.parse(new Date()) / 1000,
+              date: Date.now(),
               text: textAreaRef.current.value,
             };
           }
@@ -48,7 +48,7 @@ const CommentForm = ({ onClose, onAddComment, bookId }) => {
 
   return (
     <Fragment>
-      <h1>Add New Comment</h1>
+      <h1 className={styles.heading}>Add New Comment for {title}</h1>
       <form onSubmit={addCommentHandler}>
         <textarea
           className={styles.textarea}
@@ -57,7 +57,7 @@ const CommentForm = ({ onClose, onAddComment, bookId }) => {
         ></textarea>
         <div className={styles.action}>
           <Button type="submit" onClick={() => {}} extraClass="button--primary">
-            Change
+            Add Comment
           </Button>
           <Button
             type="button"

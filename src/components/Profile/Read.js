@@ -1,10 +1,11 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment, useContext } from 'react';
 
 import LoadingSpinner from '../UI/LoadingSpinner';
 import ReadBook from './ReadBook';
 import Sorting from '../Profile/Sorting';
 
 import styles from './WishlistRead.module.css';
+import ReadBooksContext from '../../store/readBooks-context';
 
 const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
   const [sortedBooks, setSortedBooks] = useState(null);
@@ -14,10 +15,7 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
     label: 'Title',
     orderLabel: 'Descending',
   });
-
-  // const onChangeDateInRead = (dateObj) => {
-  //   onChangeDateInProfile(dateObj);
-  // };
+  const { readBooksNum } = useContext(ReadBooksContext);
 
   useEffect(() => {
     const readArray = [];
@@ -75,8 +73,11 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
         onChangeOrderHandler={changeOrderHandler}
         onChangeSortedByHandler={changeSortedByHandler}
       />
-      {sortedBooks?.length < 1 && (
-        <p className={styles.noBooks}>You have no books in your wishlist.</p>
+      {/* {sortedBooks?.length < 1 && ( */}
+      {!readBooksNum && (
+        <p className={styles.noBooks}>
+          You have no books in your Read Books List.
+        </p>
       )}
       {!sortedBooks && <LoadingSpinner />}
       {sortedBooks &&

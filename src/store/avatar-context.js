@@ -7,7 +7,7 @@ const AvatarContext = React.createContext({
 });
 
 export const AvatarContextProvider = (props) => {
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState('avatarDefault');
   const { isLoggedIn, email } = useContext(AuthContext);
   const [userId, setUserId] = useState('');
 
@@ -24,9 +24,6 @@ export const AvatarContextProvider = (props) => {
             if (userAvatar) {
               setAvatar(userAvatar);
             }
-            // else {
-            //   setAvatar('avatarDefault');
-            // }
           }
         });
     } else {

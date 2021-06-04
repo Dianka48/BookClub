@@ -32,9 +32,14 @@ export const ReadBooksContextProvider = (props) => {
     setReadBooks((prev) => prev - 1);
   };
 
+  const addBook = () => {
+    setReadBooks((prev) => prev + 1);
+  };
+
   const contextValue = {
     readBooksNum: readBooks,
     removeReadBook: removeBook,
+    addReadBook: addBook,
   };
 
   return (

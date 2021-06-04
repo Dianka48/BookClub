@@ -2,6 +2,7 @@ import { useContext, Fragment } from 'react';
 import styles from './Comment.module.css';
 import AuthContext from '../../store/auth-context';
 import Button from '../UI/Button';
+import BookDate from '../UI/BookDate';
 
 const Comment = ({
   commentId,
@@ -14,6 +15,7 @@ const Comment = ({
   bookId,
 }) => {
   const { email } = useContext(AuthContext);
+  const avatarImage = require(`../../assets/avatars/${avatar}.png`);
 
   const deleteCommentHandler = () => {
     fetch(
@@ -38,7 +40,11 @@ const Comment = ({
 
   return (
     <Fragment>
-      <h2>Comment {date}</h2>
+      <BookDate timestamp={date} time={true} />
+      <h2>{userName}</h2>
+
+      <img src={avatarImage.default} alt="avatar" className={styles.avatar} />
+      <p>{text}</p>
       {email === userEmail && (
         <div className={styles.button}>
           <Button onClick={deleteCommentHandler} extraClass="button--medium">

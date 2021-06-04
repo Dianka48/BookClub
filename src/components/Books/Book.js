@@ -7,6 +7,7 @@ import Icons from './Icons/Icons';
 import Rating from './Rating';
 import Category from './Categories/Category';
 import AuthContext from '../../store/auth-context';
+import ReadBooksContext from '../../store/readBooks-context';
 
 const Book = ({
   bookKey,
@@ -24,6 +25,7 @@ const Book = ({
   const [wishlistIsLoading, setWishlistIsLoading] = useState(true);
   const [isRead, setIsRead] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const { addReadBook, removeReadBook } = useContext(ReadBooksContext);
 
   const isLoading = readIsLoading || wishlistIsLoading;
   const { isLoggedIn } = useContext(AuthContext);
@@ -73,6 +75,7 @@ const Book = ({
   };
 
   const readChangeHandler = (read) => {
+    read ? removeReadBook() : addReadBook();
     const date = Date.now();
     const valueToPut = read
       ? null

@@ -5,7 +5,7 @@ import Quote from './Quote';
 
 const QuoteContainer = () => {
   const [fetchedQuotes, setFetchedQuotes] = useState(null);
-  const [randomQuoteIndex, setRandomQuoteIndex] = useState(0);
+  const [randomQuoteIndex, setRandomQuoteIndex] = useState(null);
 
   const generateRandomNumber = (arrayLength) => {
     return Math.floor(Math.random() * arrayLength);
@@ -22,30 +22,35 @@ const QuoteContainer = () => {
           quotesArray.push(data[key]);
         }
         setFetchedQuotes(quotesArray);
+        setRandomQuoteIndex(generateRandomNumber(quotesArray.length));
       })
       .catch((ex) => console.error(ex));
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
     const timer = setTimeout(() => {
-      setRandomQuoteIndex((prev) => {
-        while (true) {
-          const randomNum = generateRandomNumber(fetchedQuotes.length);
-          if (prev !== randomNum) {
-            return randomNum;
+      if (isMounted) {
+        setRandomQuoteIndex((prev) => {
+          while (true) {
+            const randomNum = generateRandomNumber(fetchedQuotes.length);
+            if (prev !== randomNum) {
+              return randomNum;
+            }
           }
-        }
-      });
+        });
+      }
     }, 30000);
 
     return () => {
+      isMounted = false;
       clearTimeout(timer);
     };
   }, [fetchedQuotes, randomQuoteIndex]);
 
   return (
     <div key={randomQuoteIndex} className={styles.quoteContainer}>
-      {fetchedQuotes && (
+      {fetchedQuotes && randomQuoteIndex && (
         <Quote
           text={fetchedQuotes[randomQuoteIndex].text}
           author={fetchedQuotes[randomQuoteIndex].author}

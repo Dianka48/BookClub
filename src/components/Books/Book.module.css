@@ -39,6 +39,7 @@
 
 .bookImage {
   min-width: 5rem;
+  max-width: 5rem;
   margin-right: 0.5rem;
 }
 
@@ -64,6 +65,7 @@
 
   .bookImage {
     min-width: 7rem;
+    max-width: 7rem;
     margin-right: 1rem;
   }
 }
