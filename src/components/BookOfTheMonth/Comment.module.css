@@ -34,6 +34,7 @@
 .comment {
   border-bottom: 1px dotted var(--secondary);
   margin-top: 1.5rem;
+  line-height: 1.6;
 }
 
 .comment:last-child {
