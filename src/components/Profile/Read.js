@@ -73,33 +73,34 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
         onChangeOrderHandler={changeOrderHandler}
         onChangeSortedByHandler={changeSortedByHandler}
       />
-      {/* {sortedBooks?.length < 1 && ( */}
       {!readBooksNum && (
         <p className={styles.noBooks}>
           You have no books in your Read Books List.
         </p>
       )}
       {!sortedBooks && <LoadingSpinner />}
-      {sortedBooks &&
-        sortedBooks.map((book) => (
-          <ReadBook
-            key={book.bookId}
-            bookId={book.bookId}
-            userId={userId}
-            author={book.author}
-            title={book.title}
-            reviews={book.reviews}
-            score={book.score}
-            category={book.category}
-            image={book.image}
-            year={book.year}
-            userScore={book.userScore}
-            userReviews={book.userReviews}
-            date={book.date}
-            rated={book.rated}
-            onChangeDate={onChangeDateInProfile}
-          />
-        ))}
+      <div className={styles.bookList}>
+        {sortedBooks &&
+          sortedBooks.map((book) => (
+            <ReadBook
+              key={book.bookId}
+              bookId={book.bookId}
+              userId={userId}
+              author={book.author}
+              title={book.title}
+              reviews={book.reviews}
+              score={book.score}
+              category={book.category}
+              image={book.image}
+              year={book.year}
+              userScore={book.userScore}
+              userReviews={book.userReviews}
+              date={book.date}
+              rated={book.rated}
+              onChangeDate={onChangeDateInProfile}
+            />
+          ))}
+      </div>
     </Fragment>
   );
 };

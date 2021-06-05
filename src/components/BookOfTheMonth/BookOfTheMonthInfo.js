@@ -1,4 +1,5 @@
 import { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import LoadingSpinner from '../UI/LoadingSpinner';
 
 import styles from './BookOfTheMonthInfo.module.css';
@@ -29,7 +30,10 @@ const BookOfTheMonthInfo = ({ month }) => {
             text: data[key].text,
             title: data[key].title,
             year: data[key].year,
-            rating: Number(data[key].score) / Number(data[key].reviews),
+            rating:
+              Math.round(
+                (Number(data[key].score) / Number(data[key].reviews)) * 100,
+              ) / 100,
           };
         }
         setCurrentBookOfTheMonth(bookOfTheMonth);
@@ -44,29 +48,40 @@ const BookOfTheMonthInfo = ({ month }) => {
       {!isLoading && currentBookOfTheMonth && (
         <Fragment>
           <div className={styles.book}>
-            <h1>{currentBookOfTheMonth.title}</h1>
-            <Rating
-              reviews={currentBookOfTheMonth.reviews}
-              score={currentBookOfTheMonth.score}
-            />
-            <p className={styles.rating}>
-              (Users rate this book: {currentBookOfTheMonth.rating})
-            </p>
-            <div className={styles.author}>
-              <span>{currentBookOfTheMonth.author}</span>
-              <span>({currentBookOfTheMonth.year})</span>
-            </div>
-            <Category
-              category={currentBookOfTheMonth.category}
-              extraClasses={[currentBookOfTheMonth.category]}
-            />
             <div className={styles.bookImage}>
               <img
                 src={currentBookOfTheMonth.image}
                 alt={currentBookOfTheMonth.title}
               />
             </div>
-            <p className={styles.text}>{currentBookOfTheMonth.text}</p>
+            <div className={styles.bookInfo}>
+              <h1>{currentBookOfTheMonth.title}</h1>
+              <Rating
+                reviews={currentBookOfTheMonth.reviews}
+                score={currentBookOfTheMonth.score}
+              />
+              <p className={styles.rating}>
+                (Users rate this book: {currentBookOfTheMonth.rating})
+              </p>
+              <div className={styles.author}>
+                <span>{currentBookOfTheMonth.author}</span>
+                <span>({currentBookOfTheMonth.year})</span>
+              </div>
+              <Category
+                category={currentBookOfTheMonth.category}
+                extraClasses={[currentBookOfTheMonth.category]}
+              />
+
+              <p className={styles.text}>
+                {currentBookOfTheMonth.text.slice(
+                  0,
+                  currentBookOfTheMonth.text.indexOf(' ', 300),
+                ) + '...'}
+                <Link to={`/books/${currentBookOfTheMonth.bookId}`}>
+                  &nbsp;read more
+                </Link>
+              </p>
+            </div>
           </div>
           <Discussion
             bookId={currentBookOfTheMonth.bookId}
