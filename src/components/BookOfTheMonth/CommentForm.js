@@ -13,6 +13,9 @@ const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
     if (textAreaRef.current.value.trim().length <= 0) {
       setError('You need to enter a comment.');
       return;
+    } else if (textAreaRef.current.value.trim().length > 450) {
+      setError('Your comment is too long (max 450 characters).');
+      return;
     } else {
       setError('');
       fetch(
@@ -50,11 +53,12 @@ const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
     <Fragment>
       <h1 className={styles.heading}>Add New Comment for {title}</h1>
       <form onSubmit={addCommentHandler}>
-        <textarea
-          className={styles.textarea}
-          ref={textAreaRef}
-          placeholder="Enter your comment here..."
-        ></textarea>
+        <div className={styles.textarea}>
+          <textarea
+            ref={textAreaRef}
+            placeholder="Enter your comment here..."
+          ></textarea>
+        </div>
         <div className={styles.action}>
           <Button type="submit" onClick={() => {}} extraClass="button--primary">
             Add Comment

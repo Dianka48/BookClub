@@ -46,6 +46,7 @@
   cursor: pointer;
 }
 
-.clickable.sci-fi:hover {
+.clickable.sci-fi:hover,
+.clickable.read:hover {
   color: black;
 }

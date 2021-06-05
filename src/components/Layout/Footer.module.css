@@ -1,15 +1,14 @@
 .footer {
   width: 100vw;
   display: flex;
-  height: 5rem;
+  height: 4rem;
   background-color: var(--medium);
   font-size: 0.8rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  row-gap: 0.2rem;
   text-align: center;
-  padding: 1rem 1rem;
+  padding: 1rem 0.5rem;
   position: fixed;
   left: 0;
   bottom: 0;
