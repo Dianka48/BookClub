@@ -34,6 +34,7 @@
 .sci-fi,
 .read {
   background-color: var(--secondary);
+  color: var(--light);
 }
 
 .all {
@@ -43,4 +44,8 @@
 .clickable:hover {
   color: var(--light);
   cursor: pointer;
+}
+
+.clickable.sci-fi:hover {
+  color: black;
 }

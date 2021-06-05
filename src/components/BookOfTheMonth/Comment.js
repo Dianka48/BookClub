@@ -39,20 +39,23 @@ const Comment = ({
   };
 
   return (
-    <Fragment>
+    <div className={styles.comment}>
       <BookDate timestamp={date} time={true} />
-      <h2>{userName}</h2>
-
-      <img src={avatarImage.default} alt="avatar" className={styles.avatar} />
-      <p>{text}</p>
-      {email === userEmail && (
-        <div className={styles.button}>
-          <Button onClick={deleteCommentHandler} extraClass="button--medium">
-            Delete
-          </Button>
-        </div>
-      )}
-    </Fragment>
+      <div className={styles.userName}>
+        <p>{userName}</p>
+        {email === userEmail && (
+          <div className={styles.button}>
+            <Button onClick={deleteCommentHandler} extraClass="button--medium">
+              Delete
+            </Button>
+          </div>
+        )}
+      </div>
+      <div className={styles.commentContent}>
+        <img src={avatarImage.default} alt="avatar" className={styles.avatar} />
+        <p>{text}</p>
+      </div>
+    </div>
   );
 };
 

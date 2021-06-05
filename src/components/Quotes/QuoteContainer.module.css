@@ -2,7 +2,7 @@
   width: 100vw;
   text-align: center;
   padding: 0 1rem;
-  animation: appear 30000ms ease;
+  animation: appear 10000ms ease;
   margin: calc(100vh - 90vh) 0;
   opacity: 0;
 }
@@ -24,6 +24,20 @@
 
 @media (min-width: 768px) {
   .quoteContainer {
-    margin: calc(100vh - 75vh) 0;
+    margin: calc(100vh - 80vh) 0;
+    padding: 0 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quoteContainer {
+    padding: 0 9rem;
+    margin: calc(100vh - 70vh) 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .quoteContainer {
+    padding: 0 13rem;
   }
 }

@@ -77,7 +77,7 @@ const ReadBook = ({
 
   const changeDateHandler = () => {
     let newDate = dateInputRef.current.value;
-    newDate = Number(Date.parse(newDate));
+    newDate = newDate ? Number(Date.parse(newDate)) : 0;
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read/${bookId}.json`,
       {

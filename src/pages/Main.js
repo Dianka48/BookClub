@@ -35,27 +35,29 @@ const Main = () => {
 
   return (
     <div className={styles.container}>
-      {signingUp && (
-        <Modal onClose={closeHandler}>
-          <SignUpForm onClose={closeHandler} />
-        </Modal>
-      )}
-      {signingIn && (
-        <Modal onClose={closeHandler}>
-          <SignInForm onClose={closeHandler} />
-        </Modal>
-      )}
-      <QuoteContainer />
-      {!isLoggedIn && (
-        <MainAuth onSignIn={signInHandler} onSignUp={signUpHandler} />
-      )}
-      {isLoggedIn && (
-        <div className={styles.profileButton}>
-          <Button onClick={clickHandler} extraClass="button--primary">
-            Back to BookClub
-          </Button>
-        </div>
-      )}
+      <div className={styles.overlay}>
+        {signingUp && (
+          <Modal onClose={closeHandler}>
+            <SignUpForm onClose={closeHandler} />
+          </Modal>
+        )}
+        {signingIn && (
+          <Modal onClose={closeHandler}>
+            <SignInForm onClose={closeHandler} />
+          </Modal>
+        )}
+        <QuoteContainer />
+        {!isLoggedIn && (
+          <MainAuth onSignIn={signInHandler} onSignUp={signUpHandler} />
+        )}
+        {isLoggedIn && (
+          <div className={styles.profileButton}>
+            <Button onClick={clickHandler} extraClass="button--primary">
+              Back to BookClub
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

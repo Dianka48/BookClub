@@ -40,7 +40,7 @@ const QuoteContainer = () => {
           }
         });
       }
-    }, 30000);
+    }, 10000);
 
     return () => {
       isMounted = false;

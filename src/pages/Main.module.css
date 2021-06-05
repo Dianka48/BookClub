@@ -5,6 +5,15 @@
   overflow: hidden;
 }
 
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(238, 226, 220, 0.25);
+}
+
 .profileButton {
   position: absolute;
   bottom: 2rem;

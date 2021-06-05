@@ -13,7 +13,7 @@ const BookOfTheMonthInfo = ({ month }) => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books.json?orderBy="bookOfTheMonth"&equalTo="yes"`,
+      `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books.json?orderBy="bookOfTheMonth"&equalTo=true`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -39,7 +39,7 @@ const BookOfTheMonthInfo = ({ month }) => {
 
   return (
     <Fragment>
-      <h2>Book of {month}</h2>
+      <h2 className={styles.month}>Book of {month}</h2>
       {isLoading && <LoadingSpinner />}
       {!isLoading && currentBookOfTheMonth && (
         <Fragment>

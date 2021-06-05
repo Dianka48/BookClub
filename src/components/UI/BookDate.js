@@ -22,7 +22,7 @@ const BookDate = ({ timestamp, time }) => {
     setDate(dateString);
   }, [timestamp, time]);
 
-  return <span>{date}</span>;
+  return <>{timestamp === 0 ? <span>No Date</span> : <span>{date}</span>}</>;
 };
 
 export default BookDate;

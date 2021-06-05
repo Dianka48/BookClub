@@ -6,6 +6,7 @@ import CommentForm from './CommentForm';
 import Modal from '../UI/Modal';
 import AuthContext from '../../store/auth-context';
 import SignInForm from '../Auth/SignInForm';
+import styles from './Discussion.module.css';
 
 const Discussion = ({ bookId, title }) => {
   const [comments, setComments] = useState(null);
@@ -52,51 +53,56 @@ const Discussion = ({ bookId, title }) => {
 
   return (
     <Fragment>
-      <h1>Discussion {bookId}</h1>
-      {addingNewComment && (
-        <Modal onClose={onClose}>
-          <CommentForm
-            onClose={onClose}
-            onAddComment={addCommentHandler}
-            bookId={bookId}
-            title={title}
-          />
-        </Modal>
-      )}
-      {!isLoggedIn && (
-        <Button onClick={() => setSigningIn(true)} extraClass="button--primary">
-          Sign In to Comment
-        </Button>
-      )}
-      {signingIn && (
-        <Modal onClose={() => setSigningIn(false)}>
-          <SignInForm onClose={() => setSigningIn(false)} />
-        </Modal>
-      )}
-      {isLoggedIn && (
-        <Button
-          onClick={() => setAddingNewComment(true)}
-          extraClass="button--primary"
-        >
-          Add New Comment
-        </Button>
-      )}
-      {isLoading && <LoadingSpinner />}
-      {!isLoading &&
-        comments &&
-        comments.map((comment) => (
-          <Comment
-            onDeleteComment={addCommentHandler}
-            key={comment.commentId}
-            commentId={comment.commentId}
-            text={comment.text}
-            date={comment.date}
-            avatar={comment.avatar}
-            userName={comment.userName}
-            userEmail={comment.userEmail}
-            bookId={bookId}
-          />
-        ))}
+      <div className={styles.discussion}>
+        <h1>Discussion</h1>
+        {addingNewComment && (
+          <Modal onClose={onClose}>
+            <CommentForm
+              onClose={onClose}
+              onAddComment={addCommentHandler}
+              bookId={bookId}
+              title={title}
+            />
+          </Modal>
+        )}
+        {!isLoggedIn && (
+          <Button
+            onClick={() => setSigningIn(true)}
+            extraClass="button--primary"
+          >
+            Sign In to Comment
+          </Button>
+        )}
+        {signingIn && (
+          <Modal onClose={() => setSigningIn(false)}>
+            <SignInForm onClose={() => setSigningIn(false)} />
+          </Modal>
+        )}
+        {isLoggedIn && (
+          <Button
+            onClick={() => setAddingNewComment(true)}
+            extraClass="button--primary"
+          >
+            Add New Comment
+          </Button>
+        )}
+        {isLoading && <LoadingSpinner />}
+        {!isLoading &&
+          comments &&
+          comments.map((comment) => (
+            <Comment
+              onDeleteComment={addCommentHandler}
+              key={comment.commentId}
+              commentId={comment.commentId}
+              text={comment.text}
+              date={comment.date}
+              avatar={comment.avatar}
+              userName={comment.userName}
+              userEmail={comment.userEmail}
+              bookId={bookId}
+            />
+          ))}
+      </div>
     </Fragment>
   );
 };

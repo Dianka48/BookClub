@@ -7,7 +7,7 @@ import TopReaders from '../components/TopReaders/TopReaders';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 
 const BookOfTheMonth = () => {
-  const currentMonth = new Date().toLocaleDateString(undefined, {
+  const currentMonth = new Date().toLocaleDateString('en-US', {
     month: 'long',
   });
 
