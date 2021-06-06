@@ -65,15 +65,17 @@ const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
 
   return (
     <Fragment>
-      <h2 className={styles.wishlist}>Your Wishlist</h2>
-      <Sorting
-        sorting={sorting}
-        onChangeOrderHandler={changeOrderHandler}
-        onChangeSortedByHandler={changeSortedByHandler}
-      />
-      {sortedBooks?.length < 1 && (
-        <p className={styles.noBooks}>You have no books in your wishlist.</p>
-      )}
+      <div className={styles.wishlistContainer}>
+        <h2 className={styles.wishlist}>Your Wishlist</h2>
+        <Sorting
+          sorting={sorting}
+          onChangeOrderHandler={changeOrderHandler}
+          onChangeSortedByHandler={changeSortedByHandler}
+        />
+        {sortedBooks?.length < 1 && (
+          <p className={styles.noBooks}>You have no books in your wishlist.</p>
+        )}
+      </div>
       {!sortedBooks && <LoadingSpinner />}
       <div className={styles.bookList}>
         {sortedBooks &&

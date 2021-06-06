@@ -1,7 +1,7 @@
 .wishlist,
 .read {
   font-size: 1.6rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .noBooks {
@@ -26,7 +26,9 @@
     margin-top: 5rem;
   }
 
-  .bookList {
+  .bookList,
+  .wishlistContainer,
+  .readContainer {
     margin: auto;
     width: 90%;
   }
@@ -37,7 +39,9 @@
     font-size: 1.6rem;
   }
 
-  .bookList {
+  .bookList,
+  .wishlistContainer,
+  .readContainer {
     margin: auto;
     width: 80%;
   }

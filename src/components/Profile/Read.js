@@ -67,17 +67,19 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
 
   return (
     <Fragment>
-      <h2 className={styles.read}>Books You Have Read</h2>
-      <Sorting
-        sorting={sorting}
-        onChangeOrderHandler={changeOrderHandler}
-        onChangeSortedByHandler={changeSortedByHandler}
-      />
-      {!readBooksNum && (
-        <p className={styles.noBooks}>
-          You have no books in your Read Books List.
-        </p>
-      )}
+      <div className={styles.readContainer}>
+        <h2 className={styles.read}>Books You Have Read</h2>
+        <Sorting
+          sorting={sorting}
+          onChangeOrderHandler={changeOrderHandler}
+          onChangeSortedByHandler={changeSortedByHandler}
+        />
+        {!readBooksNum && (
+          <p className={styles.noBooks}>
+            You have no books in your Read Books List.
+          </p>
+        )}
+      </div>
       {!sortedBooks && <LoadingSpinner />}
       <div className={styles.bookList}>
         {sortedBooks &&
