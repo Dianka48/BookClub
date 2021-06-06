@@ -36,39 +36,83 @@ const ReadBook = ({
   const readChangeHandler = (_read) => {
     removeReadBook();
     setRemovedFromRead(true);
-    fetch(
-      `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify({ [bookId]: null }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-    ).catch((err) => console.error(err.message));
 
-    fetch(
-      `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        fetch(
-          `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
-          {
-            method: 'PATCH',
-            body: JSON.stringify({
-              reviews: data.reviews - 1,
-              score: data.score - newUserRating,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
+    let actualUserScore = newUserRating;
+    if (actualUserScore === 0) {
+      fetch(
+        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read/${bookId}/userScore.json`,
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          actualUserScore = Number(data);
+          fetch(
+            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
+            {
+              method: 'PATCH',
+              body: JSON.stringify({ [bookId]: null }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
             },
+          ).catch((err) => console.error(err.message));
+          fetch(
+            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              fetch(
+                `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
+                {
+                  method: 'PATCH',
+                  body: JSON.stringify({
+                    reviews: data.reviews - 1,
+                    score: data.score - actualUserScore,
+                  }),
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                },
+              )
+                .then((_response) => setNewUserRating(0))
+                .catch((err) => console.error(err.message));
+            })
+            .catch((err) => console.error(err.message));
+        });
+    } else {
+      fetch(
+        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify({ [bookId]: null }),
+          headers: {
+            'Content-Type': 'application/json',
           },
-        )
-          .then((_response) => setNewUserRating(0))
-          .catch((err) => console.error(err.message));
-      })
-      .catch((err) => console.error(err.message));
+        },
+      ).catch((err) => console.error(err.message));
+
+      fetch(
+        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          fetch(
+            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
+            {
+              method: 'PATCH',
+              body: JSON.stringify({
+                reviews: data.reviews - 1,
+                score: data.score - newUserRating,
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            },
+          )
+            .then((_response) => setNewUserRating(0))
+            .catch((err) => console.error(err.message));
+        })
+        .catch((err) => console.error(err.message));
+    }
   };
 
   const getUserRatingHandler = (rating) => {
