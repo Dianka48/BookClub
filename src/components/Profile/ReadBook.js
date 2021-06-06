@@ -36,60 +36,43 @@ const ReadBook = ({
   const readChangeHandler = (_read) => {
     removeReadBook();
     setRemovedFromRead(true);
-
-    let actualUserScore = newUserRating;
-    if (actualUserScore === 0) {
+    fetch(
+      `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify({ [bookId]: null }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    ).catch((err) => console.error(err.message));
+    if (newUserRating === 0) {
+      if (!rated) {
+        return;
+      }
       fetch(
-        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read/${bookId}/userScore.json`,
+        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
       )
         .then((response) => response.json())
         .then((data) => {
-          actualUserScore = Number(data);
           fetch(
-            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
+            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
             {
               method: 'PATCH',
-              body: JSON.stringify({ [bookId]: null }),
+              body: JSON.stringify({
+                reviews: data.reviews - 1,
+                score: data.score - userScore,
+              }),
               headers: {
                 'Content-Type': 'application/json',
               },
             },
-          ).catch((err) => console.error(err.message));
-          fetch(
-            `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
           )
-            .then((response) => response.json())
-            .then((data) => {
-              fetch(
-                `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
-                {
-                  method: 'PATCH',
-                  body: JSON.stringify({
-                    reviews: data.reviews - 1,
-                    score: data.score - actualUserScore,
-                  }),
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                },
-              )
-                .then((_response) => setNewUserRating(0))
-                .catch((err) => console.error(err.message));
-            })
+            .then((_response) => setNewUserRating(0))
             .catch((err) => console.error(err.message));
-        });
+        })
+        .catch((err) => console.error(err.message));
     } else {
-      fetch(
-        `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify({ [bookId]: null }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      ).catch((err) => console.error(err.message));
-
       fetch(
         `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
       )
