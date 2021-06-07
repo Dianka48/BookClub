@@ -11,6 +11,7 @@
   color: var(--secondary);
   width: 100%;
   max-width: 15rem;
+  font-family: inherit;
   font-size: inherit;
   margin: 0 auto 1rem auto;
 }

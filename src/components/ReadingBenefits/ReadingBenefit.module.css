@@ -9,6 +9,10 @@
   row-gap: 1rem;
 }
 
+.benefits {
+  margin-bottom: 2rem;
+}
+
 .image {
   width: 70%;
 }

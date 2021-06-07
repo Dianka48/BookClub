@@ -91,8 +91,9 @@
 
 @media (min-width: 1024px) {
   .notFound {
-    left: 25%;
-    width: 50%;
+    left: 0;
+    width: 50rem;
+    margin: 0 calc(50vw - 25rem);
   }
 
   .number {
