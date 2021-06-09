@@ -1,6 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import styles from './Icons.module.css';
 
+/**
+ * @returns clickable ReadIcon for adding and removing books to read books
+ */
+
 const ReadIcon = ({ isRead, onReadChange }) => {
   const [read, setRead] = useState(isRead);
 
@@ -9,6 +13,7 @@ const ReadIcon = ({ isRead, onReadChange }) => {
     setRead((prev) => !prev);
   };
 
+  // Returns either filled in icon or empty icon depending on the state if the book is in user's read books or not
   return (
     <Fragment>
       {!read && (

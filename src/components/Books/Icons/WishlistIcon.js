@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import styles from './Icons.module.css';
 
+/**
+ * @returns clickable WishlistIcon for adding and removing books to wishlist
+ */
+
 const WishlistIcon = ({ isWishlisted, onWishlistChange }) => {
   const [wishlisted, setWishlisted] = useState(isWishlisted);
 
@@ -9,6 +13,7 @@ const WishlistIcon = ({ isWishlisted, onWishlistChange }) => {
     setWishlisted((prev) => !prev);
   };
 
+  // Returns either filled in icon or empty icon depending on the state if the book is in user's wishlist or not
   return (
     <Fragment>
       {!wishlisted && (

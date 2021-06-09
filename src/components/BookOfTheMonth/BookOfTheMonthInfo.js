@@ -7,10 +7,15 @@ import Rating from '../Books/Rating';
 import Category from '../Books/Categories/Category';
 import Discussion from './Discussion';
 
+/**
+ * @returns the current book of the month and discussion
+ */
+
 const BookOfTheMonthInfo = ({ month }) => {
   const [currentBookOfTheMonth, setCurrentBookOfTheMonth] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetching the current book of the month and its info
   useEffect(() => {
     setIsLoading(true);
     fetch(

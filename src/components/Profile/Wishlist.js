@@ -4,6 +4,10 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import WishlistedBook from './WishlistedBook';
 import Sorting from './Sorting';
 
+/**
+ * @returns the sorting buttons and a list of all the wishlisted books by current user
+ */
+
 const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
   const [sortedBooks, setSortedBooks] = useState(null);
   const [sorting, setSorting] = useState({
@@ -13,6 +17,7 @@ const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
     orderLabel: 'Ascending',
   });
 
+  // sorts the books according to selected sorted By (title or rating) and selected order (asc or desc)
   useEffect(() => {
     const wishlistedArray = [];
     for (const key in wishlistedBooksObj) {
@@ -41,6 +46,7 @@ const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
     setSortedBooks(sortedArray);
   }, [allBooks, wishlistedBooksObj, sorting]);
 
+  // changes the order of the sorted books (ascending or descending)
   const changeOrderHandler = () => {
     setSorting((prev) => {
       return {
@@ -53,6 +59,7 @@ const Wishlist = ({ allBooks, wishlistedBooksObj, userId }) => {
     });
   };
 
+  // changes the sorted by (title or rating)
   const changeSortedByHandler = () => {
     setSorting((prev) => {
       return {

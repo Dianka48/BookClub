@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
+/**
+ * @returns a simple span with a date string
+ */
+
 const BookDate = ({ timestamp, time }) => {
   const [date, setDate] = useState('');
 
   useEffect(() => {
     const currentDate = new Date(timestamp);
+    // Sets the options depending on time. If time is true, time will be shown.
     const options = time
       ? {
           year: 'numeric',

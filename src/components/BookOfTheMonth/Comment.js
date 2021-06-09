@@ -4,6 +4,10 @@ import AuthContext from '../../store/auth-context';
 import Button from '../UI/Button';
 import BookDate from '../UI/BookDate';
 
+/**
+ * @returns single comment with user avatar, user name, text and date
+ */
+
 const Comment = ({
   commentId,
   text,
@@ -17,6 +21,7 @@ const Comment = ({
   const { email } = useContext(AuthContext);
   const avatarImage = require(`../../assets/avatars/${avatar}.png`);
 
+  // Deletes the comment from DB
   const deleteCommentHandler = () => {
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}/comments.json`,
@@ -43,6 +48,7 @@ const Comment = ({
       <BookDate timestamp={date} time={true} />
       <div className={styles.userName}>
         <p>{userName}</p>
+        {/* Delete button is rendered only for user's own comments */}
         {email === userEmail && (
           <div className={styles.button}>
             <Button onClick={deleteCommentHandler} extraClass="button--medium">

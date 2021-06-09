@@ -9,6 +9,10 @@ import Category from './Categories/Category';
 import AuthContext from '../../store/auth-context';
 import ReadBooksContext from '../../store/readBooks-context';
 
+/**
+ * @returns single book with all the information, rating and icons
+ */
+
 const Book = ({
   bookKey,
   author,
@@ -32,6 +36,7 @@ const Book = ({
 
   // Fetching data
 
+  // Checks if book is in user's wishlist and sets the isWishlisted state
   useEffect(() => {
     if (userId) {
       fetch(
@@ -45,6 +50,7 @@ const Book = ({
     }
   }, [userId, bookKey]);
 
+  // Checks if book is in user's read books and sets the isRead state
   useEffect(() => {
     if (userId) {
       fetch(
@@ -60,6 +66,7 @@ const Book = ({
 
   // Posting data
 
+  // Adds or removes the book from user's wishlist in DB
   const wishlistChangeHandler = (wishlisted) => {
     const valueToPut = wishlisted ? null : true;
     fetch(
@@ -74,6 +81,7 @@ const Book = ({
     );
   };
 
+  // Adds or removes the book from user's read books in DB
   const readChangeHandler = (read) => {
     read ? removeReadBook() : addReadBook();
     const date = Date.now();

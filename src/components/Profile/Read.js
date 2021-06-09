@@ -7,6 +7,10 @@ import Sorting from '../Profile/Sorting';
 import styles from './WishlistRead.module.css';
 import ReadBooksContext from '../../store/readBooks-context';
 
+/**
+ * @returns the sorting buttons and a list of all the read books by current user
+ */
+
 const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
   const [sortedBooks, setSortedBooks] = useState(null);
   const [sorting, setSorting] = useState({
@@ -17,6 +21,7 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
   });
   const { readBooksNum } = useContext(ReadBooksContext);
 
+  // sorts the books according to selected sorted By (title or date) and selected order (asc or desc)
   useEffect(() => {
     const readArray = [];
     for (const key in readBooksObj) {
@@ -43,6 +48,7 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
     setSortedBooks(sortedArray);
   }, [allBooks, readBooksObj, sorting]);
 
+  // changes the order of the sorted books (ascending or descending)
   const changeOrderHandler = () => {
     setSorting((prev) => {
       return {
@@ -55,6 +61,7 @@ const Read = ({ allBooks, readBooksObj, userId, onChangeDateInProfile }) => {
     });
   };
 
+  // changes the sorted by (title or date)
   const changeSortedByHandler = () => {
     setSorting((prev) => {
       return {

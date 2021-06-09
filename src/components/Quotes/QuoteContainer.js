@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import styles from './QuoteContainer.module.css';
 import Quote from './Quote';
 
+/**
+ * @returns a quote container with randomly generated quote from DB
+ */
+
 const QuoteContainer = () => {
   const [fetchedQuotes, setFetchedQuotes] = useState(null);
   const [randomQuoteIndex, setRandomQuoteIndex] = useState(null);
@@ -11,6 +15,7 @@ const QuoteContainer = () => {
     return Math.floor(Math.random() * arrayLength);
   };
 
+  // fetches all quotes from DB
   useEffect(() => {
     fetch(
       'https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/quotes.json',
@@ -22,11 +27,13 @@ const QuoteContainer = () => {
           quotesArray.push(data[key]);
         }
         setFetchedQuotes(quotesArray);
+        // sets the random quote index
         setRandomQuoteIndex(generateRandomNumber(quotesArray.length));
       })
       .catch((ex) => console.error(ex));
   }, []);
 
+  // changes the random quote index every 10 000 miliseconds
   useEffect(() => {
     let isMounted = true;
     const timer = setTimeout(() => {

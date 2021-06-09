@@ -6,6 +6,10 @@ import ReadingBenefit from '../components/ReadingBenefits/ReadingBenefit';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 import TopReaders from '../components/TopReaders/TopReaders';
 
+/**
+ * @returns a simple static page with reading benefits
+ */
+
 const ReadingBenefits = () => {
   return (
     <Fragment>

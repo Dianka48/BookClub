@@ -1,6 +1,10 @@
 import Category from './Category';
 import styles from './Categories.module.css';
 
+/**
+ * @returns set of category labels for books, all of them clickable
+ */
+
 const Categories = ({ onFilterCategory }) => {
   return (
     <div className={styles.categories}>

@@ -6,14 +6,20 @@ import logo from '../../assets/logo.png';
 import AuthContext from '../../store/auth-context';
 import SignInOut from './SignInOut';
 
+/**
+ * @returns simple navigation or hamburger menu depending on the browser window size
+ */
+
 const Navigation = () => {
   const { userName, isLoggedIn } = useContext(AuthContext);
   const [menuOpened, setMenuOpened] = useState(false);
 
+  // Opens the hamburger menu
   const menuOpenHandler = () => {
     setMenuOpened(true);
   };
 
+  // Closes the hamburger menu
   const menuCloseHandler = () => {
     setMenuOpened(false);
   };
@@ -59,6 +65,7 @@ const Navigation = () => {
               Why Reading?
             </NavLink>
           </li>
+          {/* Link to the profile page is only shown for users that are signed in */}
           {isLoggedIn && (
             <li>
               <NavLink

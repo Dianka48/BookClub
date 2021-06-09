@@ -10,7 +10,12 @@ import ReadBooksContext from '../../store/readBooks-context';
 import AvatarContext from '../../store/avatar-context';
 import AvatarForm from './Avatars/AvatarForm';
 
+/**
+ * @returns the content of the user profile page, the avatar, wishlist and read books category labels and books for the selected category
+ */
+
 const UserProfile = () => {
+  // retrieves the selected category from local storage or sets it to default - wishlist
   const [filteredCategory, setFilteredCategory] = useState(
     localStorage.getItem('category')
       ? localStorage.getItem('category')
@@ -34,23 +39,28 @@ const UserProfile = () => {
 
   const avatarImage = require(`../../assets/avatars/${avatar}.png`);
 
+  // changes the filtered category (wishlist or read books) and stores it in local storage
   const onFilterCategory = (selectedCategory) => {
     setFilteredCategory(selectedCategory);
     localStorage.setItem('category', selectedCategory);
   };
 
+  // opens the form for choosing the avatar
   const avatarClickHandler = () => {
     setChoosingAvatar(true);
   };
 
+  // closes the form for choosing the avatar
   const avatarCloseHandler = () => {
     setChoosingAvatar(false);
   };
 
+  // changes the state of the new selected date when user submits the form
   const changeDateHandler = (dateObj) => {
     setNewDate(dateObj);
   };
 
+  // fetches all the books from DB
   useEffect(() => {
     setBooksAreLoading(true);
     fetch(
@@ -66,6 +76,7 @@ const UserProfile = () => {
       });
   }, [filteredCategory]);
 
+  // fetches all the user data from DB (userId, wishlisted books, read books)
   useEffect(() => {
     setUserDataAreLoading(true);
     fetch(
@@ -86,6 +97,7 @@ const UserProfile = () => {
 
   return (
     <Fragment>
+      {/* Renders the avatar form when user clicks on the button for choosing avatar */}
       {choosingAvatar && <AvatarForm onClose={avatarCloseHandler} />}
       <div className={styles.welcome}>
         <div className={styles.changeAvatar} onClick={avatarClickHandler}>
@@ -100,7 +112,9 @@ const UserProfile = () => {
         <h1>Welcome to your Book Diary, {userName}</h1>
         <p className={styles.readBooks}>
           {' '}
-          You have read {readBooksNum === 0 ? 'no' : readBooksNum}{' '}
+          {readBooksNum === 0
+            ? `You haven't read any`
+            : `You have read ${readBooksNum}`}{' '}
           {readBooksNum === 1 ? 'book' : 'books'} so far.
         </p>
       </div>
@@ -117,6 +131,7 @@ const UserProfile = () => {
         />
       </div>
       {isLoading && <LoadingSpinner />}
+      {/* Renders books according to filtered category chosen by the user */}
       {filteredCategory === 'wishlist' && !isLoading && (
         <Wishlist
           userId={userId}

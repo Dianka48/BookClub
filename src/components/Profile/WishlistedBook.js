@@ -7,6 +7,10 @@ import WishlistIcon from '../Books/Icons/WishlistIcon';
 import Rating from '../Books/Rating';
 import Category from '../Books/Categories/Category';
 
+/**
+ * @returns one wishlisted book with all the info about the book, overall rating and wishlist icon
+ */
+
 const WishlistedBook = ({
   bookId,
   userId,
@@ -20,6 +24,7 @@ const WishlistedBook = ({
 }) => {
   const [removedFromWishlist, setRemovedFromWishlist] = useState(false);
 
+  // when clicked on a wishlist icon, removes a book from user's wishlist in DB
   const wishlistChangeHandler = (_wishlisted) => {
     setRemovedFromWishlist(true);
     fetch(

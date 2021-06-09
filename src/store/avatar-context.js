@@ -1,16 +1,23 @@
 import React, { useEffect, useState, useContext } from 'react';
 import AuthContext from './auth-context';
 
+// the avatar image info was needed in more components in the application (user profile, discussion)
+
 const AvatarContext = React.createContext({
   avatar: 'avatarDefault',
   changeAvatar: (avatar) => {},
 });
+
+/**
+ * @returns avatar context provider which provides info about the current user's avatar image
+ */
 
 export const AvatarContextProvider = (props) => {
   const [avatar, setAvatar] = useState('avatarDefault');
   const { isLoggedIn, email } = useContext(AuthContext);
   const [userId, setUserId] = useState('');
 
+  // fetches the current user's avatar
   useEffect(() => {
     if (isLoggedIn) {
       fetch(
@@ -27,10 +34,12 @@ export const AvatarContextProvider = (props) => {
           }
         });
     } else {
+      // if user did not choose an avatar yet, it sets it to default
       setAvatar('avatarDefault');
     }
   }, [isLoggedIn, email]);
 
+  // changes the avatar in DB
   const changeAvatar = (selectedAvatar) => {
     setAvatar(selectedAvatar);
     fetch(

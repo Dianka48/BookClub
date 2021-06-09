@@ -3,6 +3,10 @@ import React, { useState, Fragment } from 'react';
 import Rating from '../../Books/Rating';
 import RatingStars from './RatingStars';
 
+/**
+ * @returns user rating depending whether user already rated the book or not
+ */
+
 const UserRating = ({
   reviews,
   score,
@@ -20,6 +24,7 @@ const UserRating = ({
     onGetUserRating(Number(rating));
     setUserRated(true);
     setUserRatingChanged({ newUserScore: Number(rating), newUserReviews: 1 });
+    // Posts a new user rating to DB for current user
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read/${bookId}.json`,
       {
@@ -35,6 +40,7 @@ const UserRating = ({
       },
     ).catch((err) => console.error(err.message));
 
+    // Updates the overall rating for the book
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
       {

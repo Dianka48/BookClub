@@ -1,5 +1,9 @@
 import styles from './RatingStars.module.css';
 
+/**
+ * @returns stars for user rating which can be hovered over and selected
+ */
+
 const RatingStars = ({ onUserRated }) => {
   const starMouseEnterHandler = (event) => {
     const starEls = event.target.parentElement.getElementsByTagName('span');

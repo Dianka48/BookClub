@@ -6,6 +6,10 @@ import Container from '../components/UI/Container';
 import TopReaders from '../components/TopReaders/TopReaders';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 
+/**
+ * @returns the Book of the Month page with current month
+ */
+
 const BookOfTheMonth = () => {
   const currentMonth = new Date().toLocaleDateString('en-US', {
     month: 'long',

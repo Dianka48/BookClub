@@ -11,6 +11,10 @@ import BookDate from '../UI/BookDate';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 
+/**
+ * @returns one read book with date, all the info about the book, user rating and read book icon
+ */
+
 const ReadBook = ({
   bookId,
   userId,
@@ -36,6 +40,7 @@ const ReadBook = ({
   const readChangeHandler = (_read) => {
     removeReadBook();
     setRemovedFromRead(true);
+    // when clicked on a read icon, removes a book from user's read list in DB
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read.json`,
       {
@@ -55,6 +60,7 @@ const ReadBook = ({
       )
         .then((response) => response.json())
         .then((data) => {
+          // when user already rated the book it removes his rating from the overall book rating
           fetch(
             `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
             {
@@ -78,6 +84,7 @@ const ReadBook = ({
       )
         .then((response) => response.json())
         .then((data) => {
+          // when user rated the book recently it removes his recent rating (newUserRating) from the overall book rating
           fetch(
             `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
             {
@@ -105,6 +112,7 @@ const ReadBook = ({
   const changeDateHandler = () => {
     let newDate = dateInputRef.current.value;
     newDate = newDate ? Number(Date.parse(newDate)) : 0;
+    // updates the date in DB when user submits the form for changing date
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/lists/read/${bookId}.json`,
       {
@@ -141,7 +149,7 @@ const ReadBook = ({
               </div>
             )}
           </div>
-
+          {/* Returns a simple form for changing date when user clicks on Change button */}
           {
             <div className={changingDate ? styles.changeDate : styles.hidden}>
               <div className={styles.input}>

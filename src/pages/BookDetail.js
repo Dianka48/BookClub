@@ -9,6 +9,10 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import TopReaders from '../components/TopReaders/TopReaders';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 
+/**
+ * @returns Book Detail page
+ */
+
 const BookDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedBook, setLoadedBook] = useState(null);
@@ -18,12 +22,14 @@ const BookDetail = () => {
 
   const { bookId } = params;
 
+  // fetches the book data from DB according to bookId in url params
   useEffect(() => {
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}.json`,
     )
       .then((response) => response.json())
       .then((data) => {
+        // if data are not found user is redirected to page not found
         if (!data) {
           history.replace('/page-not-found');
           return;

@@ -3,11 +3,16 @@ import styles from './CommentForm.module.css';
 import Button from '../UI/Button';
 import AuthContext from '../../store/auth-context';
 
+/**
+ * @returns form for adding a new comment
+ */
+
 const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
   const textAreaRef = useRef();
   const { email } = useContext(AuthContext);
   const [error, setError] = useState('');
 
+  // Adds the comment to DB
   const addCommentHandler = (event) => {
     event.preventDefault();
     if (textAreaRef.current.value.trim().length <= 0) {
@@ -18,11 +23,13 @@ const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
       return;
     } else {
       setError('');
+      // fetches the current user name and avatar using user email
       fetch(
         `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="email"&equalTo="${email}"`,
       )
         .then((response) => response.json())
         .then((data) => {
+          // Creates a new comment that will be added to DB
           let newComment;
           for (const key in data) {
             newComment = {
@@ -33,6 +40,7 @@ const CommentForm = ({ onClose, onAddComment, bookId, title }) => {
               text: textAreaRef.current.value,
             };
           }
+          // Adds a new comment to DB using bookID
           fetch(
             `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books/${bookId}/comments.json`,
             {

@@ -1,6 +1,11 @@
 import styles from './Category.module.css';
 
+/**
+ * @returns single category label which can be clickable or not
+ */
+
 const Category = ({ category, extraClasses, onFilterCategory }) => {
+  // Adds classes for styling
   const classesToAdd = extraClasses.map((extraClass) => styles[extraClass]);
 
   const clickCategoryHandler = () => {

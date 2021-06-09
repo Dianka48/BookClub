@@ -6,6 +6,10 @@ import Book from './Book';
 import Categories from './Categories/Categories';
 import Sorting from '../Profile/Sorting';
 
+/**
+ * @returns list of books in DB
+ */
+
 const BookList = () => {
   const [fetchedBooks, setFetchedBooks] = useState(null);
   const [booksAreLoading, setBooksAreLoading] = useState(true);
@@ -23,6 +27,7 @@ const BookList = () => {
 
   const isLoading = booksAreLoading || userIdIsLoading;
 
+  // fetches all the books from DB
   useEffect(() => {
     fetch(
       'https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/books.json',
@@ -33,6 +38,7 @@ const BookList = () => {
         for (const key in data) {
           booksArray.push({ bookKey: key, ...data[key] });
         }
+        // sorts the books by rating
         booksArray.sort((book1, book2) => {
           const rating1 =
             Number(book1.reviews) === 0
@@ -52,6 +58,7 @@ const BookList = () => {
       .catch((ex) => console.error(ex));
   }, []);
 
+  // fetches userId using email
   useEffect(() => {
     fetch(
       `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="email"&equalTo="${email}"`,
@@ -66,6 +73,7 @@ const BookList = () => {
       .catch((ex) => console.error(ex));
   }, [email]);
 
+  // sorts the books by title or rating
   useEffect(() => {
     let sortedArray;
     if (filteredBooks) {
@@ -93,6 +101,7 @@ const BookList = () => {
     setSortedBooks(sortedArray);
   }, [filteredBooks, sorting, fetchedBooks]);
 
+  // changes the order of sorted books ascending or descending
   const changeOrderHandler = () => {
     setSorting((prev) => {
       return {
@@ -105,6 +114,7 @@ const BookList = () => {
     });
   };
 
+  // changes the sorted by title or rating
   const changeSortedByHandler = () => {
     setSorting((prev) => {
       return {
@@ -115,6 +125,7 @@ const BookList = () => {
     });
   };
 
+  // filters the books according to selected category
   const filterCategoryHandler = (filteredCategory) => {
     if (filteredCategory === 'all') {
       setFilteredBooks(fetchedBooks);

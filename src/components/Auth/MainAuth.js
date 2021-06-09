@@ -2,6 +2,10 @@ import styles from './MainAuth.module.css';
 import Button from '../UI/Button';
 import { Link } from 'react-router-dom';
 
+/**
+ * @returns simple div with Sign Up, Sign In and Visit as guest buttons/Links
+ */
+
 const MainAuth = ({ onSignIn, onSignUp }) => {
   return (
     <div className={styles.mainAuthContainer}>

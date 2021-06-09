@@ -7,6 +7,10 @@ import Input from '../UI/Input';
 
 import styles from './SignInUpForm.module.css';
 
+/**
+ * @returns SignUp form where user inputs his userName, email and password and signs up or clicks the cancel button
+ */
+
 const SignUpForm = ({ onClose }) => {
   const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
@@ -22,7 +26,7 @@ const SignUpForm = ({ onClose }) => {
     const enteredPassword = passwordInputRef.current.value;
     const enteredUserName = userNameInputRef.current.value;
 
-    // Add validation
+    // user is signed Up and secure token is returned
     const signUpPromise = fetch(
       'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB3OlWkSSvxoTDBCmsaxzzou_NRuc4JL04',
       {
@@ -41,6 +45,7 @@ const SignUpForm = ({ onClose }) => {
     signUpPromise
       .then((response) => {
         if (response.ok) {
+          // posts the new user to DB with his user name and email info
           return fetch(
             'https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json',
             {
@@ -68,15 +73,18 @@ const SignUpForm = ({ onClose }) => {
         }
       })
       .then((data) => {
+        // expiration time is set to current time + expiresIn (retrieved when signing the user up)
         const expirationTime = new Date(
           new Date().getTime() + Number(data.expiresIn) * 1000,
         );
+        // login function is called with all the data needed
         authCtx.login(
           data.idToken,
           expirationTime.toString(),
           data.email,
           enteredUserName,
         );
+        // after signing up user is redirected to profile page
         history.replace('./profile');
       })
       .catch((error) => setError(error.message));

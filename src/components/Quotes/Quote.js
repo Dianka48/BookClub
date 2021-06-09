@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
 import styles from './Quote.module.css';
 
+/**
+ * @returns a single quote with text and author paragraphs
+ */
+
 const Quote = ({ text, author }) => {
   return (
     <Fragment>

@@ -4,10 +4,15 @@ import Modal from '../UI/Modal';
 import SignInForm from '../Auth/SignInForm';
 import styles from './SignInOut.module.css';
 
+/**
+ * @returns sign out or sign in buttons - part of the navigation
+ */
+
 const SignInOut = ({ onCloseMenu }) => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [signingIn, setSigningIn] = useState(false);
 
+  // If the user is signed in, it signs him out, if the user is not signed in, it opens the modal window with sign in form
   const handleSignInOut = () => {
     onCloseMenu();
     if (isLoggedIn) {
@@ -17,6 +22,7 @@ const SignInOut = ({ onCloseMenu }) => {
     }
   };
 
+  // Closes the modal window with sign in form
   const closeHandler = () => {
     setSigningIn(false);
   };

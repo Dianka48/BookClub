@@ -5,6 +5,10 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 
 import styles from './ReadingBenefit.module.css';
 
+/**
+ * @returns 2 images and 2 paragraphs about reading benefits
+ */
+
 const ReadingBenefit = () => {
   const [image1Loaded, setImage1Loaded] = useState(false);
   const [image2Loaded, setImage2Loaded] = useState(false);

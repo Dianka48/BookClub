@@ -5,6 +5,10 @@ import UserProfile from '../components/Profile/UserProfile';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 import TopReaders from '../components/TopReaders/TopReaders';
 
+/**
+ * @returns the user profile page
+ */
+
 const Profile = () => {
   return (
     <div>

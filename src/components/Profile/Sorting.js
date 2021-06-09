@@ -1,5 +1,9 @@
 import styles from './Sorting.module.css';
 
+/**
+ * @returns buttons and labels for sorting according to received parameters
+ */
+
 const Sorting = ({
   sorting: { sortedBy, order, label, orderLabel },
   onChangeOrderHandler,

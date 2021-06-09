@@ -15,6 +15,10 @@ const avatars = [
   'avatar6',
 ];
 
+/**
+ * @returns modal window with a form for choosing a new avatar
+ */
+
 const AvatarForm = ({ onClose }) => {
   const { avatar, changeAvatar } = useContext(AvatarContext);
 

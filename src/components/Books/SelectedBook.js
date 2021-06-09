@@ -5,6 +5,10 @@ import styles from './SelectedBook.module.css';
 import Category from './Categories/Category';
 import { Fragment } from 'react';
 
+/**
+ * @returns details of one selected book
+ */
+
 const SelectedBook = ({
   book: { author, category, image, reviews, score, text, title, year },
 }) => {

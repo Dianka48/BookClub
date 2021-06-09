@@ -1,5 +1,9 @@
 import styles from './Footer.module.css';
 
+/**
+ * @returns simple footer with links to authors LinkedIn profile, Czechitas webpage and Goodreads
+ */
+
 const Footer = () => {
   return (
     <footer className={styles.footer}>

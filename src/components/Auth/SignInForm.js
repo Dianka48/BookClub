@@ -7,6 +7,10 @@ import Button from '../UI/Button';
 
 import styles from './SignInUpForm.module.css';
 
+/**
+ * @returns SignIn form where user inputs his email and password and signs in or clicks the cancel button
+ */
+
 const SignInForm = ({ onClose }) => {
   const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
@@ -21,14 +25,14 @@ const SignInForm = ({ onClose }) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // Add validation
-
     let userName;
 
     Promise.all([
+      // fetches user name data by entered email
       fetch(
         `https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="email"&equalTo="${enteredEmail}"`,
       ),
+      // signs the user in and returns a secure token
       fetch(
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB3OlWkSSvxoTDBCmsaxzzou_NRuc4JL04',
         {
@@ -45,6 +49,7 @@ const SignInForm = ({ onClose }) => {
       ),
     ])
       .then(async ([userNameResponse, singInResponse]) => {
+        // if the signing in failed error is thrown
         if (!singInResponse.ok) {
           throw new Error('Incorrect password or email.');
         }
@@ -53,18 +58,22 @@ const SignInForm = ({ onClose }) => {
         return [userNameData, signInData];
       })
       .then(([userNameData, signInData]) => {
+        // user name is set to user data retrieved from DB
         for (const key in userNameData) {
           userName = userNameData[key].userName;
         }
+        // expiration time is set to current time + expiresIn (retrieved when signing the user in)
         const expirationTime = new Date(
           new Date().getTime() + Number(signInData.expiresIn) * 1000,
         );
+        // login function is called with all the data needed
         authCtx.login(
           signInData.idToken,
           expirationTime.toString(),
           signInData.email,
           userName,
         );
+        // when signing in on main page user is redirected to profile page
         if (match.path === '/') {
           history.replace('./profile');
         }

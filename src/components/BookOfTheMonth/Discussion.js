@@ -8,6 +8,10 @@ import AuthContext from '../../store/auth-context';
 import SignInForm from '../Auth/SignInForm';
 import styles from './Discussion.module.css';
 
+/**
+ * @returns Add new comment button and all the comments to current book of the month
+ */
+
 const Discussion = ({ bookId, title }) => {
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +20,8 @@ const Discussion = ({ bookId, title }) => {
   const [signingIn, setSigningIn] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
+
+  // Fetches all the comments for current book of the month using bookId
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,10 +48,12 @@ const Discussion = ({ bookId, title }) => {
       });
   }, [bookId, newCommentAdded]);
 
+  // Closes the modal window for adding comments
   const onClose = () => {
     setAddingNewComment(false);
   };
 
+  // Opens the modal window for adding comments
   const addCommentHandler = (newComment) => {
     setNewCommentAdded(newComment);
     onClose();
@@ -65,6 +73,7 @@ const Discussion = ({ bookId, title }) => {
             />
           </Modal>
         )}
+        {/* The Sing in To Comment button is shown when the user is not logged in */}
         {!isLoggedIn && (
           <Button
             onClick={() => setSigningIn(true)}

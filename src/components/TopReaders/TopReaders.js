@@ -4,6 +4,10 @@ import TopReader from './TopReader';
 import ReadBooksContext from '../../store/readBooks-context';
 import AuthContext from '../../store/auth-context';
 
+/**
+ * @returns list of 5 top readers
+ */
+
 const TopReaders = () => {
   const [topReaders, setTopReaders] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,6 +16,7 @@ const TopReaders = () => {
 
   useEffect(() => {
     setLoading(true);
+    // Fetches all the users from DB with their read books
     fetch(
       'https://bookclub-b44e0-default-rtdb.europe-west1.firebasedatabase.app/users.json',
     )
@@ -30,9 +35,11 @@ const TopReaders = () => {
               email === data[key].email ? readBooksNum : userReadBooksNum,
           });
         }
+        // Sorts the readers by the number of read books
         readers.sort(
           (reader1, reader2) => reader2.readBooks - reader1.readBooks,
         );
+        // Selects only 5 top readers
         const top5Readers = readers.slice(0, 5);
         setTopReaders(top5Readers);
         setLoading(false);

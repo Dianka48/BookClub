@@ -16,6 +16,10 @@ const Overlay = ({ onClick, children }) => {
   );
 };
 
+/**
+ * @returns an Overlay with a modal window which closes when clicked outside
+ */
+
 const Modal = ({ onClose, children }) => {
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>{children}</Overlay>,

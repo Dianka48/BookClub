@@ -10,6 +10,10 @@ import MainAuth from '../components/Auth/MainAuth';
 import AuthContext from '../store/auth-context';
 import Button from '../components/UI/Button';
 
+/**
+ * @returns the main starting page with signing up/in forms and changing quotes
+ */
+
 const Main = () => {
   const [signingIn, setSigningIn] = useState(false);
   const [signingUp, setSigningUp] = useState(false);

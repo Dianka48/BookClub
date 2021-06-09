@@ -1,15 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react';
 import AuthContext from './auth-context';
 
+// Number of current user's read books was needed in more components in the application (user profile, top readers)
+
 const ReadBooksContext = React.createContext({
   readBooksNum: null,
   removeReadBook: () => {},
 });
 
+/**
+ * @returns read books context provider which provides the current user's read books number and functions for adding and removing books
+ */
+
 export const ReadBooksContextProvider = (props) => {
   const [readBooks, setReadBooks] = useState(null);
   const { isLoggedIn, email } = useContext(AuthContext);
 
+  // fetches the current user's read books from DB
   useEffect(() => {
     if (isLoggedIn) {
       fetch(
