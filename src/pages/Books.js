@@ -6,6 +6,10 @@ import BookList from '../components/Books/BookList';
 import TopReaders from '../components/TopReaders/TopReaders';
 import { ReadBooksContextProvider } from '../store/readBooks-context';
 
+/**
+ * @returns page with all books from DB
+ */
+
 const Books = () => {
   return (
     <Fragment>

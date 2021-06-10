@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 
 import styles from './PageNotFound.module.css';
 
+/**
+ * @returns a simple page not found
+ */
+
 const PageNotFound = () => {
   return (
     <div className={styles.container}>

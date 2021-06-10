@@ -2,6 +2,10 @@ import React, { Fragment } from 'react';
 
 import styles from './Avatar.module.css';
 
+/**
+ * @returns single avatar image
+ */
+
 const Avatar = ({ value, selected, onSelect }) => {
   const avatarImage = require(`../../../assets/avatars/${value}.png`);
 

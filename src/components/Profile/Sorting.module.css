@@ -52,11 +52,12 @@ button.arrow {
   transform: rotate(180deg);
 }
 
-.button.arrow:hover,
+.arrow svg:hover,
 .buttons button:hover,
-.button.arrow:active,
+.arrow svg:active,
 .buttons button:active {
   color: var(--primary);
+  fill: var(--primary);
 }
 
 @media (min-width: 768px) {
